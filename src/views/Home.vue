@@ -1,6 +1,6 @@
 <template>
   <div class="p-home">
-    <div class="hero pa-4">
+    <div class="p-home__hero pa-4">
       <v-container>
         <div class="text-h4 text-white text-center mb-2">
           Discover UK tech jobs that align with you
@@ -108,7 +108,7 @@ const filteredCompanies = computed(() => {
 
 <style lang="scss">
 .p-home {
-  .hero {
+  &__hero {
     background: #E84E36;
   }
 

@@ -21,7 +21,7 @@
         </div>
       </router-link>
       <v-divider class="my-4" />
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="bottom">
           <template v-slot:activator="{ props }">
             <div v-bind="props" class="mr-2 mb-2 c-company-card__emoji">
