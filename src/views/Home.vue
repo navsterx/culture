@@ -94,7 +94,8 @@ const filteredPerks = computed(() => {
       }
     });
   }
-  return Array.from(uniquePerks.entries()).map(([category, emoji]) => ({ key: `${emoji} ${category}`, value: category }));
+  return Array.from(uniquePerks.entries())
+    .map(([category, emoji]) => ({ key: `${emoji} ${category}`, value: category }));
 });
 
 </script>

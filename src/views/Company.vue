@@ -1,8 +1,8 @@
 <template>
   <div class="p-company">
-    <div class="p-company__hero">
+    <div class="p-company__hero" :style="`background:${company.brand_color}`">
       <v-container>
-        <div class="text-h4 font-weight-medium text-center text-white pa-4">
+        <div class="text-h4 font-weight-medium text-center text-white pa-8">
           {{ company.name }}
         </div>
       </v-container>
@@ -11,15 +11,6 @@
       <v-responsive class="align-center">
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
-            <v-col cols="12" sm="8">
-              <v-sheet class="pa-4" elevation="1">
-                <div class="text-h5 font-weight-medium mb-4">
-                  Life at {{ company.name }}
-                </div>
-                <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
-                </div>
-              </v-sheet>
-            </v-col>
             <v-col cols="12" sm="4">
               <v-sheet class="pa-4 mb-6" elevation="1">
                 <div class="text-subtitle-2 font-weight-medium">
@@ -42,6 +33,15 @@
                 <div class="d-flex my-2" v-for="(interviewProcess, index) in company.interviewProcess" :key="index">
                   <div class="mr-2 text-body-2 font-weight-medium">{{ index + 1 }}.</div>
                   <div class="text-body-2">{{ interviewProcess.step }}</div>
+                </div>
+              </v-sheet>
+            </v-col>
+            <v-col cols="12" sm="8">
+              <v-sheet class="pa-4" elevation="1">
+                <div class="text-h5 font-weight-medium mb-4">
+                  Life at {{ company.name }}
+                </div>
+                <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
                 </div>
               </v-sheet>
             </v-col>
@@ -90,12 +90,21 @@ async function getCompanyByVanityUrl() {
   }
 
   &__content {
+    ul {
+      margin-left: 30px;
+
+      li {
+        line-height: 25px;
+      }
+    }
+
     p {
-      margin-bottom: 1.5em;
+      margin-bottom: 20px;
     }
 
     h2 {
-      line-height: 50px;
+      line-height: 25px;
+      margin-bottom: 20px;
       font-weight: 500;
     }
 
