@@ -11,32 +11,15 @@
         <div class="my-4">
           <div class="filters d-flex">
             <div class="roleSearch mr-4">
-              <v-text-field
-                label="Search for a role"
-                density="compact"
-                variant="solo"
-                clearable=""
-                v-model="searchedRole"
-                hide-details
-              />
+              <v-text-field label="Search for a role" density="compact" variant="solo" clearable="" v-model="searchedRole"
+                hide-details />
             </div>
             <div class="perkSelect">
-              <v-select
-                density="compact"
-                variant="solo"
-                chips
-                clearable
-                label="Perks"
-                v-model="selectedPerks"
-                :items="perkCategoriesItems"
-                item-title="key"
-                item-value="value"
-                multiple
-                hide-details
-              ></v-select>
+              <v-select density="compact" variant="solo" chips clearable label="Perks" v-model="selectedPerks"
+                :items="perkCategoriesItems" item-title="key" item-value="value" multiple hide-details></v-select>
             </div>
           </div>
-      </div>
+        </div>
       </v-container>
     </div>
 
@@ -206,7 +189,7 @@ const companies = [
         category: "Bonus",
         description: "Company bonus scheme",
         emoji: "💰"
-      } 
+      }
     ],
     roles: [
       {
@@ -269,16 +252,20 @@ const getEmojiForCategory = (category) => {
   .hero {
     background: #E84E36;
   }
+
   .roleSearch {
     width: 25%;
   }
+
   .perkSelect {
     width: 75%;
   }
+
   @media (max-width: 768px) {
     .filters {
       flex-direction: column;
     }
+
     .roleSearch,
     .perkSelect {
       width: 100%;

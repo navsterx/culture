@@ -1,10 +1,7 @@
 <template>
-  <v-col
-    cols="12"
-    sm="4"
-  >
-    <router-link :to="`/company/${company.id}`" class="c-company-card">
-      <v-sheet class="ma-2 pa-4" elevation="1">
+  <v-col cols="12" sm="4" class="c-company-card">
+    <v-sheet class="ma-2 pa-4" elevation="1">
+      <router-link :to="`/company/${company.id}`" class="c-company-card__item">
         <div class="d-flex align-center mb-2">
           <img width="50" :src="company.logo" class="mr-4 " />
           <div>
@@ -22,26 +19,18 @@
         <div class="text-body-2">
           {{ company.description }}
         </div>
-        <v-divider class="my-4" />
-        <div>
-          <v-tooltip
-            v-for="(perk, index) in company.perks"
-            :key="index"
-            :text="perk.description"
-            location="bottom"
-          >
-            <template v-slot:activator="{ props }">
-              <span
-                v-bind="props"
-                class="mr-1 emoji"
-              >
-                {{ perk.emoji }}
-              </span>
-            </template>
-          </v-tooltip>
-        </div>
-      </v-sheet>
-    </router-link>
+      </router-link>
+      <v-divider class="my-4" />
+      <div>
+        <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="bottom">
+          <template v-slot:activator="{ props }">
+            <span v-bind="props" class="mr-1 emoji">
+              {{ perk.emoji }}
+            </span>
+          </template>
+        </v-tooltip>
+      </div>
+    </v-sheet>
   </v-col>
 </template>
 
@@ -57,8 +46,10 @@ defineProps({
 </script>
 
 <style lang="scss">
-  .c-company-card {
+.c-company-card {
+  &__item {
+    color: #292929;
     text-decoration: none;
   }
-
+}
 </style>

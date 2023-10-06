@@ -11,7 +11,5 @@
 </script>
 
 <style lang="scss">
-.p-company {
-
-}
+.p-company {}
 </style>
