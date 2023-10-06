@@ -21,12 +21,12 @@
         </div>
       </router-link>
       <v-divider class="my-4" />
-      <div>
+      <div class="d-flex">
         <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="bottom">
           <template v-slot:activator="{ props }">
-            <span v-bind="props" class="mr-1 emoji">
+            <div v-bind="props" class="mr-2 mb-2 c-company-card__emoji">
               {{ perk.emoji }}
-            </span>
+            </div>
           </template>
         </v-tooltip>
       </div>
@@ -50,6 +50,10 @@ defineProps({
   &__item {
     color: #292929;
     text-decoration: none;
+  }
+
+  &__emoji {
+    cursor: pointer;
   }
 }
 </style>
