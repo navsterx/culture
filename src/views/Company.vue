@@ -16,8 +16,7 @@
                 <div class="text-h5 font-weight-medium mb-4">
                   Life at {{ company.name }}
                 </div>
-                <div class="text-body-2">
-                  {{ company.description }}
+                <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
                 </div>
               </v-sheet>
             </v-col>
@@ -88,6 +87,18 @@ async function getCompanyByVanityUrl() {
 .p-company {
   &__hero {
     background: #E84E36;
+  }
+
+  &__content {
+    h2 {
+      line-height: 50px;
+      font-weight: 500;
+    }
+
+    h3 {
+      line-height: 40px;
+      font-weight: 500;
+    }
   }
 }
 </style>

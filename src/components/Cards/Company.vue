@@ -11,7 +11,7 @@
               role{{ company.roles.length === 1 ? '' : 's' }} available
             </div>
             <div class="text-body-2" v-else>
-              No roles availabe right now
+              No roles available right now
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
       <div class="d-flex flex-wrap">
         <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="bottom">
           <template v-slot:activator="{ props }">
-            <div v-bind="props" class="mr-2 mb-2 c-company-card__emoji">
+            <div v-bind="props" class="mr-3 mb-2 c-company-card__emoji">
               {{ perk.emoji }}
             </div>
           </template>

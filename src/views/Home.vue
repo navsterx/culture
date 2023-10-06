@@ -2,7 +2,7 @@
   <div class="p-home">
     <div class="p-home__hero pa-4">
       <v-container>
-        <div class="text-h4 text-white text-center mb-2">
+        <div class="text-h4 text-white font-weight-medium text-center mb-2">
           Discover UK tech jobs that align with you
         </div>
         <div class="text-body-1 text-white text-center mb-6">
@@ -16,7 +16,7 @@
             </div>
             <div class="perkSelect">
               <v-select density="compact" variant="solo" chips clearable label="Perks" v-model="selectedPerks"
-                :items="perkCategoriesItems" item-title="key" item-value="value" multiple hide-details></v-select>
+                :items="filteredPerks" item-title="key" item-value="value" multiple hide-details></v-select>
             </div>
           </div>
         </div>
@@ -63,46 +63,39 @@ async function getCompanies() {
 }
 
 const filteredCompanies = computed(() => {
-  if (selectedPerks.value.length === 0 && (searchedRole.value === null || searchedRole.value === '')) {
+  if (selectedPerks.value.length === 0 && (searchedRole.value === null)) {
     return companies.value;
   } else {
     return companies.value.filter(company =>
-      (selectedPerks.value.length === 0 || company.perks.some(perk => selectedPerks.value.includes(perk.category))) &&
-      (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase())))));
+      (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
+      (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
+    );
   }
 });
 
-// // Create a function to calculate perkCategories based on filtered companies
-// const calculatePerkCategories = () => {
-//   const categories = new Set();
-//   filteredCompanies.value.forEach((company) => {
-//     company.perks.forEach((perk) => {
-//       categories.add(perk.category);
-//     });
-//   });
-//   if (categories.size === 0) {
-//     return null;
-//   }
-//   return Array.from(categories);
-// };
-
-// const perkCategoriesItems = computed(() => {
-//   const filteredCategories = calculatePerkCategories();
-//   return filteredCategories.map((category) => {
-//     const emoji = getEmojiForCategory(category);
-//     return {
-//       key: emoji + ' ' + category,
-//       value: category,
-//     };
-//   });
-// });
-
-// const getEmojiForCategory = (category) => {
-//   const company = filteredCompanies.value.find((c) =>
-//     c.perks.some((perk) => perk.category === category)
-//   );
-//   return company ? company.perks.find((perk) => perk.category === category).emoji : '';
-// };
+const filteredPerks = computed(() => {
+  let uniquePerks;
+  if (filteredCompanies.value.length === 0) {
+    uniquePerks = new Map();
+    companies.value.forEach((company) => {
+      if (company.perks) {
+        company.perks.forEach((perk) => {
+          uniquePerks.set(perk.category, perk.emoji);
+        });
+      }
+    });
+  } else {
+    uniquePerks = new Map();
+    filteredCompanies.value.forEach((company) => {
+      if (company.perks) {
+        company.perks.forEach((perk) => {
+          uniquePerks.set(perk.category, perk.emoji);
+        });
+      }
+    });
+  }
+  return Array.from(uniquePerks.entries()).map(([category, emoji]) => ({ key: `${emoji} ${category}`, value: category }));
+});
 
 </script>
 
