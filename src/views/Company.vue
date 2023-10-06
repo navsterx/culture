@@ -90,6 +90,10 @@ async function getCompanyByVanityUrl() {
   }
 
   &__content {
+    p {
+      margin-bottom: 1.5em;
+    }
+
     h2 {
       line-height: 50px;
       font-weight: 500;
