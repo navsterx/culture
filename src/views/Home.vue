@@ -22,13 +22,13 @@
         </div>
       </v-container>
     </div>
-    <div class="companies">
-      <v-container>
+    <v-fade-transition>
+      <v-container v-if="isLoaded">
         <v-row no-gutters>
           <CompanyCard v-for="(company, index) in filteredCompanies" :key="index" :company="company" />
         </v-row>
       </v-container>
-    </div>
+    </v-fade-transition>
   </div>
 </template>
 
@@ -40,6 +40,7 @@ import CompanyCard from '@/components/Cards/Company.vue';
 const searchedRole = ref(null);
 const selectedPerks = ref([]);
 let companies = ref([]);
+let isLoaded = ref(false);
 
 onMounted(() => {
   getCompanies()
@@ -56,6 +57,8 @@ async function getCompanies() {
 
   } catch (error) {
     console.log('error ', error);
+  } finally {
+    isLoaded.value = true;
   }
 }
 
