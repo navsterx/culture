@@ -1,9 +1,9 @@
 <template>
   <v-col cols="12" sm="4" class="c-company-card">
-    <v-sheet class="ma-2 pa-4" elevation="1">
-      <router-link :to="`/company/${company.id}`" class="c-company-card__item">
+    `` <v-sheet class="ma-2 pa-4" elevation="1">
+      <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
         <div class="d-flex align-center mb-2">
-          <img width="50" :src="company.logo" class="mr-4 " />
+          <img width="50" :src="`/logos/${company.vanity_url}.png`" class="mr-4 " />
           <div>
             <div class="text-body-1 font-weight-medium">{{ company.name }}</div>
             <div class="text-body-2" v-if="company.roles">
