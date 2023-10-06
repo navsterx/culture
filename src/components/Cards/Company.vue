@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" sm="4" class="c-company-card">
-    `` <v-sheet class="ma-2 pa-4" elevation="1">
+    <v-sheet class="ma-2 pa-4" elevation="1">
       <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
         <div class="d-flex align-center mb-2">
           <img width="50" :src="`/logos/${company.vanity_url}.png`" class="mr-4 " />
