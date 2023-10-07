@@ -25,7 +25,7 @@
     <v-fade-transition>
       <v-container v-if="isLoaded">
         <v-row no-gutters>
-          <CompanyCard v-for="(company, index) in filteredCompanies" :key="index" :company="company" />
+          <company-card v-for="(company, index) in filteredCompanies" :key="index" :company="company" />
         </v-row>
       </v-container>
     </v-fade-transition>
@@ -59,7 +59,7 @@ async function getCompanies() {
 }
 
 const filteredCompanies = computed(() => {
-  if (selectedPerks.value.length === 0 && searchedRole.value === null) {
+  if (selectedPerks.value.length === 0 && (searchedRole.value === null || searchedRole.value === '')) {
     return companies.value;
   } else {
     return companies.value
@@ -91,9 +91,14 @@ const filteredPerks = computed(() => {
       }
     });
   }
-  return Array.from(uniquePerks.entries())
-    .map(([category, emoji]) => ({ key: `${emoji} ${category}`, value: category }));
+
+  const sortedPerks = Array.from(uniquePerks.entries())
+    .map(([category, emoji]) => ({ key: `${emoji} ${category}`, value: category }))
+    .sort((a, b) => a.value.localeCompare(b.value));
+
+  return sortedPerks;
 });
+
 
 </script>
 

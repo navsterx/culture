@@ -19,13 +19,8 @@
                   Perks
                 </div>
                 <v-divider class="mt-2 mb-4" />
-                <div v-for="(perk, index) in company.perks" :key="index">
-                  <div class="d-flex align-center">
-                    <div class="mr-2">{{ perk.emoji }}</div>
-                    <div class="text-body-2">{{ perk.description }}</div>
-                  </div>
-                  <v-divider v-if="index < company.perks.length - 1" class="my-2" />
-                </div>
+                <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
+                  :isLast="index < company.perks.length - 1" />
               </v-sheet>
               <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess">
                 <div class="text-subtitle-2 font-weight-medium">
@@ -55,6 +50,7 @@
 import { onMounted, ref } from 'vue';
 import { supabase } from '../supabase'
 import { useRoute } from 'vue-router';
+import Perk from '@/components/ListItems/Perk.vue';
 
 let company = ref({});
 let isLoaded = ref(false);
