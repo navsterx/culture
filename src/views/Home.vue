@@ -6,17 +6,18 @@
           Discover UK tech jobs that align with you
         </div>
         <div class="text-body-1 text-white text-center mb-6">
-          Even if a company isn't actively recruiting for a role that you're looking for, drop your CV in anyway!
+          Search for a role and/or filter on the benefits & perks to see what the company has to offer!
         </div>
         <div class="my-4">
           <div class="filters d-flex">
             <div class="roleSearch mr-4">
-              <v-text-field label="Search for a role" density="compact" variant="solo" clearable="" v-model="searchedRole"
+              <v-text-field label="Search for a role" density="compact" variant="solo" clearable v-model="searchedRole"
                 hide-details />
             </div>
             <div class="perkSelect">
-              <v-select density="compact" variant="solo" chips clearable label="Perks" v-model="selectedPerks"
-                :items="filteredPerks" item-title="key" item-value="value" multiple hide-details></v-select>
+              <v-autocomplete density="compact" variant="solo" chips clearable label="Benefits & Perks"
+                v-model="selectedPerks" :items="filteredPerks" item-title="key" item-value="value" multiple
+                hide-details></v-autocomplete>
             </div>
           </div>
         </div>
@@ -24,7 +25,7 @@
     </div>
     <v-fade-transition hide-on-leave>
       <v-container v-if="isLoaded" key="loaded-content">
-        <masonry-wall :items="filteredCompanies" :ssr-columns="3" :column-width="300" :gap="0">
+        <masonry-wall :items="filteredCompanies" :ssr-columns="3" :column-width="300">
           <template #default="{ item, index }">
             <company-card :key="index" :company="item" />
           </template>

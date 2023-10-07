@@ -15,7 +15,7 @@
           <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" sm="4">
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks">
-                <sidebar-item title="Perks" />
+                <sidebar-item title="Benefits & Perks" />
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
