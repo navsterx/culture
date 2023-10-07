@@ -22,13 +22,22 @@
         </div>
       </v-container>
     </div>
-    <v-fade-transition>
-      <v-container v-if="isLoaded">
-        <masonry-wall :key="index" :items="filteredCompanies" :ssr-columns="3" :column-width="300" :gap="0">
+    <v-fade-transition hide-on-leave>
+      <v-container v-if="isLoaded" key="loaded-content">
+        <masonry-wall :items="filteredCompanies" :ssr-columns="3" :column-width="300" :gap="0">
           <template #default="{ item, index }">
             <company-card :key="index" :company="item" />
           </template>
         </masonry-wall>
+      </v-container>
+      <v-container v-else key="skeleton-loader">
+        <v-row>
+          <v-col cols="12" md="4" v-for="i in 5" :key="i">
+            <v-skeleton-loader class="mx-auto border" max-width="370"
+              type="list-item-avatar, divider, paragraph, paragraph"></v-skeleton-loader>
+          </v-col>
+          <v-skeleton-loader boilerplate></v-skeleton-loader>
+        </v-row>
       </v-container>
     </v-fade-transition>
   </div>
@@ -65,11 +74,11 @@ const filteredCompanies = computed(() => {
   if (selectedPerks.value.length === 0 && (searchedRole.value === null || searchedRole.value === '')) {
     return companies.value;
   } else {
-    return companies.value
-      .filter(company =>
-        (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
-        (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
-      )
+    const filtered = companies.value.filter(company =>
+      (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
+      (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
+    );
+    return [...filtered]; // Create a new array with filtered results
   }
 });
 
