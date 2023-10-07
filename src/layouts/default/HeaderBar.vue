@@ -5,10 +5,25 @@
         <router-link to="/" class="mt-2">
           <img src="/logo.png" width="250" />
         </router-link>
-        <nav class="text-body-2 font-weight-regular c-header-bar__links">
-          <router-link to="/listed" class="mr-6 font-weight-medium">Get Listed</router-link>
-          <router-link to="/about" class="font-weight-medium">About</router-link>
-        </nav>
+        <v-menu>
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props" icon color="white" elevation="0">
+              <v-icon>mdi-menu</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item to="/listed">
+              <v-list-item-title>
+                Get Listed
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/about">
+              <v-list-item-title>
+                About
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
     </v-container>
   </div>
