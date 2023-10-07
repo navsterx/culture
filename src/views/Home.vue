@@ -24,9 +24,13 @@
     </div>
     <v-fade-transition>
       <v-container v-if="isLoaded">
-        <v-row no-gutters>
-          <company-card v-for="(company, index) in filteredCompanies" :key="index" :company="company" />
-        </v-row>
+        <masonry-wall :key="index" :items="filteredCompanies" :ssr-columns="1" :column-width="300" :gap="0">
+          <template #default="{ item, index }">
+            <div :style="{ height: `${item}px` }" class="card flex items-center justify-center">
+              <company-card :key="index" :company="item" />
+            </div>
+          </template>
+        </masonry-wall>
       </v-container>
     </v-fade-transition>
   </div>
@@ -36,6 +40,7 @@
 import { onMounted, ref, computed } from 'vue';
 import { supabase } from '../supabase'
 import CompanyCard from '@/components/Cards/Company.vue';
+import MasonryWall from '@yeger/vue-masonry-wall'
 
 const searchedRole = ref(null);
 const selectedPerks = ref([]);

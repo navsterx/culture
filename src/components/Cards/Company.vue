@@ -1,38 +1,37 @@
 <template>
-  <v-col cols="12" sm="4" class="c-company-card">
-    <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-1" elevation="1">
-      <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
-        <div class="d-flex align-center mb-2">
-          <img width="50" :src="`/logos/${company.vanity_url}.png`" class="mr-4 " />
-          <div>
-            <div class="text-body-1 font-weight-medium">{{ company.name }}</div>
-            <div class="text-body-2" v-if="company.roles">
-              <span class="font-weight-medium">{{ company.roles.length }}</span>
-              role{{ company.roles.length === 1 ? '' : 's' }} available
-            </div>
-            <div class="text-body-2" v-else>
-              No roles available right now
-            </div>
+  <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-1" elevation="1">
+    <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
+      <div class="d-flex align-center mb-2">
+        <img width="50" :src="`/logos/${company.vanity_url}.png`" class="mr-4 " />
+        <div>
+          <div class="text-body-1 font-weight-medium">{{ company.name }}</div>
+          <div class="text-body-2" v-if="company.roles">
+            <span class="font-weight-medium">{{ company.roles.length }}</span>
+            role{{ company.roles.length === 1 ? '' : 's' }} available
+          </div>
+          <div class="text-body-2" v-else>
+            No roles available right now
           </div>
         </div>
-        <v-divider class="my-4" />
-        <div class="text-body-2">
-          {{ company.description }}
-        </div>
-      </router-link>
-      <v-divider class="mt-4 mb-2" v-if="company.perks" />
-      <div class="d-flex flex-wrap">
-        <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
-          max-width="300">
-          <template v-slot:activator="{ props }">
-            <div v-bind="props" class="mr-3 mb-2 mt-1 c-company-card__emoji">
-              {{ perk.emoji }}
-            </div>
-          </template>
-        </v-tooltip>
       </div>
-    </v-sheet>
-  </v-col>
+      <v-divider class="my-4" />
+      <div class="text-body-2">
+        {{ company.description }}
+      </div>
+    </router-link>
+    <v-divider class="mt-4 mb-2" v-if="company.perks" />
+    <div class="d-flex flex-wrap" v-if="company.perks">
+      <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
+        max-width="300">
+        <template v-slot:activator="{ props }">
+          <div v-bind="props" class="mr-3 mb-2 mt-1 c-company-card__emoji">
+            {{ perk.emoji }}
+          </div>
+        </template>
+      </v-tooltip>
+    </div>
+    <div v-else class="pt-4"></div>
+  </v-sheet>
 </template>
 
 <script setup>
