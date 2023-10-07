@@ -6,7 +6,7 @@
           Discover UK tech jobs that align with you
         </div>
         <div class="text-body-1 text-white text-center mb-6">
-          Search for a role and/or filter on the perks!
+          Even if a company isn't actively recruiting for a role that you're looking for, drop your CV in anyway!
         </div>
         <div class="my-4">
           <div class="filters d-flex">
@@ -50,7 +50,7 @@ async function getCompanies() {
   try {
     const { data: data } = await supabase
       .rpc('getCompanies')
-    companies.value = data.sort((a, b) => a.order - b.order);;
+    companies.value = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   } catch (error) {
     console.log('error ', error);
   } finally {
