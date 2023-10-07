@@ -11,13 +11,12 @@
         <div class="my-4">
           <div class="filters d-flex">
             <div class="roleSearch mr-4">
-              <v-text-field label="Search for a role" density="compact" variant="solo" clearable v-model="searchedRole"
-                hide-details />
+              <input-filter v-model="searchedRole" :delay="1000" />
             </div>
             <div class="perkSelect">
-              <v-autocomplete density="compact" variant="solo" chips clearable label="Benefits & Perks"
-                v-model="selectedPerks" :items="filteredPerks" item-title="key" item-value="value" multiple
-                hide-details></v-autocomplete>
+              <v-autocomplete color="primary" density="compact" variant="solo" chips closable-chips clearable
+                label="Benefits & Perks" v-model="selectedPerks" :items="filteredPerks" item-title="key"
+                item-value="value" multiple hide-details></v-autocomplete>
             </div>
           </div>
         </div>
@@ -25,7 +24,10 @@
     </div>
     <v-fade-transition hide-on-leave>
       <v-container v-if="isLoaded" key="loaded-content">
-        <masonry-wall :items="filteredCompanies" :ssr-columns="3" :column-width="300">
+        <div class="text-center pa-8 text-body-1" v-if="filteredCompanies.length === 0">Sorry, no companies were found
+          that match your
+          criteria, please try again</div>
+        <masonry-wall v-else :items="filteredCompanies" :ssr-columns="3" :column-width="300">
           <template #default="{ item, index }">
             <company-card :key="index" :company="item" />
           </template>
@@ -46,9 +48,11 @@
 
 <script setup>
 import { onMounted, ref, computed } from 'vue';
-import { supabase } from '../supabase'
-import CompanyCard from '@/components/Cards/Company.vue';
+import { supabase } from '../supabase';
 import MasonryWall from '@yeger/vue-masonry-wall'
+
+import InputFilter from '@/components/Inputs/Filter.vue';
+import CompanyCard from '@/components/Cards/Company.vue';
 
 const searchedRole = ref(null);
 const selectedPerks = ref([]);
