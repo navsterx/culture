@@ -25,7 +25,7 @@
         <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
           max-width="300">
           <template v-slot:activator="{ props }">
-            <div v-bind="props" class="mr-3 mb-3 c-company-card__emoji">
+            <div v-bind="props" class="mr-3 mb-2 mt-1 c-company-card__emoji">
               {{ perk.emoji }}
             </div>
           </template>
