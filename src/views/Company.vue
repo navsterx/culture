@@ -15,22 +15,14 @@
           <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" sm="4">
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks">
-                <div class="text-subtitle-2 font-weight-medium">
-                  Perks
-                </div>
-                <v-divider class="mt-2 mb-4" />
+                <sidebar-item title="Perks" />
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
               <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess">
-                <div class="text-subtitle-2 font-weight-medium">
-                  Interview Process
-                </div>
-                <v-divider class="mt-2 mb-4" />
-                <div class="d-flex my-2" v-for="(interviewProcess, index) in company.interviewProcess" :key="index">
-                  <div class="mr-2 text-body-2 font-weight-medium">{{ index + 1 }}.</div>
-                  <div class="text-body-2">{{ interviewProcess.step }}</div>
-                </div>
+                <sidebar-item title="Interview Process" />
+                <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
+                  :key="index" :interviewProcess="interviewProcess" />
               </v-sheet>
             </v-col>
             <v-col cols="12" sm="8">
@@ -50,7 +42,9 @@
 import { onMounted, ref } from 'vue';
 import { supabase } from '../supabase'
 import { useRoute } from 'vue-router';
+import InterviewProcess from '@/components/ListItems/InterviewProcess.vue';
 import Perk from '@/components/ListItems/Perk.vue';
+import SidebarItem from '@/components/Cards/SidebarItem.vue';
 
 let company = ref({});
 let isLoaded = ref(false);
