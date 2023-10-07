@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" sm="4" class="c-company-card">
+  <v-col cols="12" sm="4" class="c-company-card" v-if="company.is_live">
     <v-sheet class="ma-2 pa-4" elevation="1">
       <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
         <div class="d-flex align-center mb-2">
@@ -20,7 +20,7 @@
           {{ company.description }}
         </div>
       </router-link>
-      <v-divider class="my-4" />
+      <v-divider class="my-4" v-if="company.perks" />
       <div class="d-flex flex-wrap">
         <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="bottom"
           max-width="300">

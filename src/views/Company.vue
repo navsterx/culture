@@ -1,18 +1,20 @@
 <template>
   <div class="p-company">
-    <div class="p-company__hero" :style="`background:${company.brand_color}`">
-      <v-container>
-        <div class="text-h4 font-weight-medium text-center text-white pa-8">
-          {{ company.name }}
-        </div>
-      </v-container>
-    </div>
+    <v-fade-transition>
+      <div :style="`background:${company.brand_color}`" v-if="isLoaded">
+        <v-container>
+          <div class="text-h4 font-weight-medium text-center text-white pa-8">
+            {{ company.name }}
+          </div>
+        </v-container>
+      </div>
+    </v-fade-transition>
     <v-container>
       <v-responsive class="align-center">
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" sm="4">
-              <v-sheet class="pa-4 mb-6" elevation="1">
+              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks">
                 <div class="text-subtitle-2 font-weight-medium">
                   Perks
                 </div>
@@ -25,7 +27,7 @@
                   <v-divider v-if="index < company.perks.length - 1" class="my-2" />
                 </div>
               </v-sheet>
-              <v-sheet class="pa-4" elevation="1">
+              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess">
                 <div class="text-subtitle-2 font-weight-medium">
                   Interview Process
                 </div>
@@ -38,9 +40,6 @@
             </v-col>
             <v-col cols="12" sm="8">
               <v-sheet class="pa-4" elevation="1">
-                <div class="text-h5 font-weight-medium mb-4">
-                  Life at {{ company.name }}
-                </div>
                 <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
                 </div>
               </v-sheet>
@@ -85,13 +84,10 @@ async function getCompanyByVanityUrl() {
 
 <style lang="scss">
 .p-company {
-  &__hero {
-    background: #E84E36;
-  }
-
   &__content {
     ul {
       margin-left: 30px;
+      margin-bottom: 20px;
 
       li {
         line-height: 25px;
@@ -103,7 +99,6 @@ async function getCompanyByVanityUrl() {
     }
 
     h2 {
-      line-height: 25px;
       margin-bottom: 20px;
       font-weight: 500;
     }

@@ -50,11 +50,7 @@ async function getCompanies() {
   try {
     const { data: data } = await supabase
       .rpc('getCompanies')
-
-    companies.value = data;
-
-    console.log(data)
-
+    companies.value = data.sort((a, b) => a.order - b.order);;
   } catch (error) {
     console.log('error ', error);
   } finally {
@@ -63,13 +59,14 @@ async function getCompanies() {
 }
 
 const filteredCompanies = computed(() => {
-  if (selectedPerks.value.length === 0 && (searchedRole.value === null)) {
+  if (selectedPerks.value.length === 0 && searchedRole.value === null) {
     return companies.value;
   } else {
-    return companies.value.filter(company =>
-      (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
-      (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
-    );
+    return companies.value
+      .filter(company =>
+        (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
+        (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
+      )
   }
 });
 
