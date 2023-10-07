@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" sm="4" class="c-company-card">
-    <v-sheet class="ma-2 pt-4 pr-4 pl-4" elevation="1">
+    <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-1" elevation="1">
       <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
         <div class="d-flex align-center mb-2">
           <img width="50" :src="`/logos/${company.vanity_url}.png`" class="mr-4 " />
@@ -22,10 +22,10 @@
       </router-link>
       <v-divider class="mt-4 mb-2" v-if="company.perks" />
       <div class="d-flex flex-wrap">
-        <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="right"
+        <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
           max-width="300">
           <template v-slot:activator="{ props }">
-            <div v-bind="props" class="mr-2 mb-2 c-company-card__emoji">
+            <div v-bind="props" class="mr-3 mb-3 c-company-card__emoji">
               {{ perk.emoji }}
             </div>
           </template>
