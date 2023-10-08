@@ -39,7 +39,7 @@
               </v-row>
 
               <v-sheet class="pa-4" elevation="1" rounded>
-                <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
+                <div class="text-body-2 p-company__content" v-html="company.content">
                 </div>
               </v-sheet>
             </v-col>
