@@ -14,19 +14,19 @@
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" sm="4">
-              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks">
+              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
-              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess">
+              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
                 <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
                   :key="index" :interviewProcess="interviewProcess" />
               </v-sheet>
             </v-col>
             <v-col cols="12" sm="8">
-              <v-sheet class="pa-4" elevation="1">
+              <v-sheet class="pa-4" elevation="1" rounded>
                 <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
                 </div>
               </v-sheet>

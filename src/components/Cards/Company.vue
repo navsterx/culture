@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-1" elevation="1">
+  <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-1" elevation="1" rounded>
     <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
       <div class="d-flex align-center mb-2">
         <img width="50" :src="company.logo" class="mr-4 " />
