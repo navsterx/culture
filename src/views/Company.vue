@@ -1,13 +1,13 @@
 <template>
   <div class="p-company">
     <v-fade-transition>
-      <div :style="`background:${company.brand_color}`" v-if="isLoaded">
+      <v-sheet :color="company.brand_color" v-if="isLoaded">
         <v-container>
-          <div class="text-h4 font-weight-medium text-center text-white pa-8">
+          <div class="text-h4 font-weight-medium text-center pa-8">
             {{ company.name }}
           </div>
         </v-container>
-      </div>
+      </v-sheet>
     </v-fade-transition>
     <v-container>
       <v-responsive class="align-center">
@@ -26,6 +26,18 @@
               </v-sheet>
             </v-col>
             <v-col cols="12" sm="8">
+
+              <v-row class="mb-4">
+                <v-col cols="12" sm="6" v-for="(role, index) in company.roles" :key="index">
+                  <v-sheet class="pa-4" elevation="1" rounded>
+                    <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
+                    <div class="text-body-2 font-weight-regular mb-2">{{ role.type }} / {{ role.location }}</div>
+                    <v-btn :color="company.brand_color" size="small" elevation="0" :href="role.url"
+                      target="_blank">Apply</v-btn>
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
               <v-sheet class="pa-4" elevation="1" rounded>
                 <div class="text-body-2 mt-4 p-company__content" v-html="company.content">
                 </div>
