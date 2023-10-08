@@ -3,7 +3,7 @@
     <v-fade-transition>
       <v-sheet :color="company.brand_color" v-if="isLoaded">
         <v-container>
-          <div class="text-h4 font-weight-medium text-center pa-8">
+          <div class="text-h4 font-weight-medium text-center pa-10">
             {{ company.name }}
           </div>
         </v-container>
