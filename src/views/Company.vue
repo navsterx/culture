@@ -25,9 +25,10 @@
                   </v-sheet>
                 </v-col>
               </v-row>
-              <v-row v-if="displayedRoles.length < company.roles.length">
+              <v-row v-if="company.roles && displayedRoles.length < company.roles.length">
                 <v-col cols="12" class="text-center">
-                  <v-btn @click="showMoreRoles" size="x-small" variant="text" color="primary">View {{ company.roles.length
+                  <v-btn @click="showMoreRoles" size="x-small" variant="text" color="primary">View {{
+                    company.roles.length
                     -
                     displayedRoles.length }}
                     more</v-btn>
@@ -101,7 +102,9 @@ async function getCompanyByVanityUrl() {
     console.log('error ', error);
   } finally {
     isLoaded.value = true;
-    displayedRoles.value = company.value.roles.slice(0, 2);
+    if (company.value.roles) {
+      displayedRoles.value = company.value.roles.slice(0, 2);
+    }
   }
 }
 </script>
