@@ -19,7 +19,7 @@
                 <v-col cols="12" sm="6" v-for="(role, index) in company.roles" :key="index">
                   <v-sheet class="pa-4" elevation="1" rounded>
                     <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
-                    <div class="text-body-2 font-weight-regular mb-2">{{ role.type }} / {{ role.location }}</div>
+                    <div class="text-body-2 font-weight-regular mb-2">{{ role.location }}</div>
                     <v-btn :color="company.brand_color" size="small" elevation="0" :href="role.url"
                       target="_blank">Apply</v-btn>
                   </v-sheet>
