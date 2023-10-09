@@ -15,8 +15,8 @@
           <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" sm="8">
 
-              <v-row class="mb-4">
-                <v-col cols="12" sm="6" v-for="(role, index) in company.roles" :key="index">
+              <v-row>
+                <v-col cols="12" sm="6" v-for="(role, index) in displayedRoles" :key="index">
                   <v-sheet class="pa-4" elevation="1" rounded>
                     <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
                     <div class="text-body-2 font-weight-regular mb-2">{{ role.location }}</div>
@@ -25,8 +25,16 @@
                   </v-sheet>
                 </v-col>
               </v-row>
+              <v-row v-if="displayedRoles.length < company.roles.length">
+                <v-col cols="12" class="text-center">
+                  <v-btn @click="showMoreRoles" size="x-small" variant="text" color="primary">View {{ company.roles.length
+                    -
+                    displayedRoles.length }}
+                    more</v-btn>
+                </v-col>
+              </v-row>
 
-              <v-sheet class="pa-4" elevation="1" rounded>
+              <v-sheet class="pa-4 mt-6" elevation="1" rounded>
                 <div class="text-body-2 p-company__content" v-html="company.content">
                 </div>
               </v-sheet>
@@ -63,12 +71,24 @@ let company = ref({});
 let isLoaded = ref(false);
 const vanityUrl = ref(null);
 const route = useRoute();
+const displayedRoles = ref([]);
+const showAllRoles = ref(false);
 
 onMounted(() => {
   vanityUrl.value = route.params.vanityUrl;
   scrollTo(0, 0);
-  getCompanyByVanityUrl()
-})
+  getCompanyByVanityUrl();
+});
+
+const showMoreRoles = () => {
+  // Check if showAllRoles is false (initially) and set it to true
+  if (!showAllRoles.value) {
+    showAllRoles.value = true;
+    // Display all roles when the button is clicked
+    displayedRoles.value = company.value.roles;
+  }
+};
+
 
 async function getCompanyByVanityUrl() {
   try {
@@ -81,6 +101,7 @@ async function getCompanyByVanityUrl() {
     console.log('error ', error);
   } finally {
     isLoaded.value = true;
+    displayedRoles.value = company.value.roles.slice(0, 2);
   }
 }
 </script>
