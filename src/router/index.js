@@ -4,7 +4,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('@/layouts/default/Default.vue'),
+    component: () => {
+      if (window.location.hostname === 'www.awesomeculture.co.uk') {
+        // If the hostname is 'www.awesomeculture.co.uk', use the 'coming soon' layout
+        return import('@/layouts/default/ComingSoon.vue');
+      } else {
+        // For other hostnames, use the 'default' layout
+        return import('@/layouts/default/Default.vue');
+      }
+    },
     children: [
       {
         path: '/',
@@ -28,7 +36,8 @@ const routes = [
       },
     ],
   },
-]
+];
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
