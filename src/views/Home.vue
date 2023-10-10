@@ -123,6 +123,7 @@ const filteredPerks = computed(() => {
 .p-home {
   &__hero {
     background: #E84E36;
+    padding-top: 75px !important;
   }
 
   .roleSearch {

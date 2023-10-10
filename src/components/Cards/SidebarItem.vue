@@ -1,6 +1,6 @@
 <template>
   <div class="c-sidebar-item">
-    <div class="text-subtitle-2 font-weight-medium">
+    <div class="text-subtitle-1 font-weight-medium">
       {{ title }}
     </div>
     <v-divider class="mt-2 mb-4" />

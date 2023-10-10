@@ -35,7 +35,8 @@
 
 <style lang="scss">
 .c-header-bar {
-  background: #fff;
+  position: absolute;
+  width: 100%;
 
   &__links {
     a {

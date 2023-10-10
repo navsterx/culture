@@ -1,21 +1,39 @@
 <template>
   <div class="p-company">
-    <v-fade-transition>
-      <v-sheet :color="company.brand_color" v-if="isLoaded">
-        <v-container>
-          <div class="text-h4 font-weight-medium text-center pa-10">
-            {{ company.name }}
-          </div>
-        </v-container>
-      </v-sheet>
-    </v-fade-transition>
+    <div class="p-company__hero">
+      <v-fade-transition>
+        <v-sheet :color="company.brand_color" v-if="isLoaded">
+          <v-container>
+            <div class="text-h4 font-weight-medium text-center pa-10">
+              {{ company.name }}
+            </div>
+          </v-container>
+        </v-sheet>
+      </v-fade-transition>
+    </div>
     <v-container>
       <v-responsive class="align-center">
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
+            <v-col cols="12" sm="4">
+              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
+                <sidebar-item title="Benefits & Perks" />
+                <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
+                  :isLast="index < company.perks.length - 1" />
+              </v-sheet>
+              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess" rounded>
+                <sidebar-item title="Interview Process" />
+                <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
+                  :key="index" :interviewProcess="interviewProcess" />
+              </v-sheet>
+            </v-col>
             <v-col cols="12" sm="8">
-
-              <v-row>
+              <v-sheet class="pa-4 mb-6" elevation="1" rounded v-for="(item, index) in company.content" :index="index">
+                <sidebar-item :title="`${item.title} at ${company.name}?`" />
+                <div class="text-body-2 font-weight-regular mt-4" v-html="item.content">
+                </div>
+              </v-sheet>
+              <v-row class="mt-4">
                 <v-col cols="12" sm="6" v-for="(role, index) in displayedRoles" :key="index">
                   <v-sheet class="pa-4" elevation="1" rounded>
                     <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
@@ -34,25 +52,7 @@
                     more</v-btn>
                 </v-col>
               </v-row>
-
-              <v-sheet class="pa-4 mt-6" elevation="1" rounded>
-                <div class="text-body-2 p-company__content" v-html="company.content">
-                </div>
-              </v-sheet>
             </v-col>
-            <v-col cols="12" sm="4">
-              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
-                <sidebar-item title="Benefits & Perks" />
-                <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
-                  :isLast="index < company.perks.length - 1" />
-              </v-sheet>
-              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess" rounded>
-                <sidebar-item title="Interview Process" />
-                <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
-                  :key="index" :interviewProcess="interviewProcess" />
-              </v-sheet>
-            </v-col>
-
           </v-row>
         </v-fade-transition>
       </v-responsive>
@@ -74,6 +74,7 @@ const vanityUrl = ref(null);
 const route = useRoute();
 const displayedRoles = ref([]);
 const showAllRoles = ref(false);
+const panel = ref(0);
 
 onMounted(() => {
   vanityUrl.value = route.params.vanityUrl;
@@ -111,29 +112,9 @@ async function getCompanyByVanityUrl() {
 
 <style lang="scss">
 .p-company {
-  &__content {
-    ul {
-      margin-left: 30px;
-      margin-bottom: 20px;
-
-      li {
-        line-height: 25px;
-      }
-    }
-
-    p {
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-
-    h3 {
-      line-height: 40px;
-      font-weight: 500;
-    }
+  &__hero {
+    margin-top: 80px !important;
+    background: white !important;
   }
 }
 </style>
