@@ -23,6 +23,10 @@
                   target="_blank">Apply</v-btn>
               </v-sheet>
             </v-col>
+          </v-row>
+        </v-fade-transition>
+        <v-fade-transition>
+          <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" sm="4">
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
@@ -36,7 +40,8 @@
               </v-sheet>
             </v-col>
             <v-col cols="12" sm="8">
-              <v-sheet class="pa-4 mb-6" elevation="1" rounded v-for="(item, index) in company.content" :index="index">
+              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
+                :index="index">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content">
                 </div>
@@ -89,9 +94,18 @@ async function getCompanyByVanityUrl() {
 
 <style lang="scss">
 .p-company {
+  &__content {
+    img {
+      width: 100%;
+    }
+
+    ul {
+      margin-left: 25px;
+    }
+  }
+
   &__hero {
     margin-top: 80px !important;
-    background: white !important;
   }
 }
 </style>
