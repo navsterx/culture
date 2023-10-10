@@ -3,7 +3,7 @@
     <div class="p-home__hero pa-4">
       <v-container>
         <div class="text-h4 text-white font-weight-medium text-center mb-2">
-          Discover UK tech jobs that align with you
+          Discover UK tech careers that align with you
         </div>
         <div class="text-body-1 text-white text-center mb-6">
           Search for a role and/or filter on the benefits & perks to see what the company has to offer!
