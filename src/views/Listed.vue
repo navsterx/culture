@@ -1,15 +1,23 @@
 <template>
-  <v-container class="p-about">
-    <v-responsive class="align-center text-center">
-      It's invite only... for now?
-    </v-responsive>
-  </v-container>
+  <div class="p-listed">
+    <div class="p-listed__hero pa-4">
+      <v-container>
+        <div class="text-h4 text-white font-weight-medium text-center mb-2">
+          Get Listed
+        </div>
+      </v-container>
+    </div>
+  </div>
 </template>
 
 <script setup>
-
 </script>
 
 <style lang="scss">
-.p-about {}
+.p-listed {
+  &__hero {
+    background: #E84E36;
+    padding-top: 75px !important;
+  }
+}
 </style>
