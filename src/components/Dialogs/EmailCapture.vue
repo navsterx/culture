@@ -9,9 +9,8 @@
                 Subscribe for Inspiring Companies!
               </div>
               <div class="text-body-2 text-white">
-                Every so often we'll send you an email telling you about new companies that have awesome culture. We will
-                not
-                share your email with anyone else and you can opt-out at any time.
+                Get ready to discover inspiring companies with amazing cultures! We'll send you occasional emails
+                featuring these gems. Rest assured, your email is safe with us, and you can unsubscribe anytime you like.
               </div>
               <div class="text-body-2">
               </div>
