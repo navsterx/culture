@@ -50,7 +50,7 @@
       </v-responsive>
     </v-container>
   </div>
-  <email-capture :timeToDisplay="10000" />
+  <email-capture :timeToDisplay="5000" />
 </template>
 
 <script setup>
