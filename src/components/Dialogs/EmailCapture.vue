@@ -118,7 +118,7 @@ watch([localStorage.getItem('optedOut'), localStorage.getItem('subscribed')], ()
 .c-email-capture {
   &__dialog {
     background: rgb(var(--v-theme-primary)) !important;
-    position: sticky !important;
+    position: fixed !important;
     bottom: 0 !important;
     width: 100% !important;
     transition: transform 0.3s ease; // Add transition property for smooth movement
