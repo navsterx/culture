@@ -18,10 +18,9 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-form @submit.prevent="subscribe">
-                <v-fade-transition>
-                  <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
-                    hide-details="auto" label="Email Address"></v-text-field>
-                </v-fade-transition>
+                <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
+                  hide-details="auto" label="Email Address" @focus="onFocus" @blur="onBlur"
+                  :class="{ 'v-focus': focused }"></v-text-field>
                 <div>
                   <v-btn color="white" class="mr-2" variant="flat" @click="subscribe">Subscribe</v-btn>
                   <v-btn color="white" variant="text" @click="cancel">No thanks</v-btn>
@@ -49,6 +48,15 @@ const rules = [
   (v) => /.+@.+\..+/.test(v) || 'Email must be valid',
 ];
 const snackbar = ref(false);
+const focused = ref(false);
+
+const onFocus = () => {
+  focused.value = true;
+}
+
+const onBlur = () => {
+  focused.value = false;
+}
 
 const props = defineProps({
   timeToDisplay: {
@@ -107,6 +115,11 @@ watch([localStorage.getItem('optedOut'), localStorage.getItem('subscribed')], ()
     position: fixed !important;
     bottom: 0 !important;
     width: 100% !important;
+    transition: transform 0.3s ease; // Add transition property for smooth movement
+
+    &.v-focus {
+      transform: translateY(-100px); // Adjust the value as needed
+    }
   }
 }
 </style>
