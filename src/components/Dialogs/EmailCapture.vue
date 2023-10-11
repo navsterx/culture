@@ -109,9 +109,13 @@ onMounted(() => {
   }, props.timeToDisplay);
 });
 
-watch([localStorage.getItem('optedOut'), localStorage.getItem('subscribed')], () => {
-  dialogOpen.value = showDialog.value;
+const optedOut = computed(() => localStorage.getItem('optedOut') ?? false);
+const subscribed = computed(() => localStorage.getItem('subscribed') ?? false);
+
+watch([optedOut, subscribed], () => {
+  dialogOpen.value = showDialog.value(optedOut.value, subscribed.value);
 });
+
 </script>
 
 <style lang="scss">
