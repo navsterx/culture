@@ -18,7 +18,7 @@
             <v-col cols="12" md="6">
               <v-form @submit.prevent="subscribe">
                 <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
-                  hide-details="auto" label="Email Address" @focus="onFocus"
+                  hide-details="auto" label="Email Address" @focus="onFocus" @blur="onBlur"
                   :class="{ 'v-focus': focused }"></v-text-field>
                 <div>
                   <v-btn color="white" class="mr-2" variant="flat" @click="subscribe">Subscribe</v-btn>
@@ -58,16 +58,10 @@ const props = defineProps({
 
 const onFocus = () => {
   focused.value = true;
-  // Calculate how much space there is left to scroll down
-  const spaceToScroll = document.body.scrollHeight - (window.scrollY + window.innerHeight);
-
-  // Check if there's enough space to scroll down by 300px
-  if (spaceToScroll >= 300) {
-    window.scrollTo({
-      top: window.scrollY + 300,
-      behavior: 'smooth',
-    });
-  }
+  window.scrollTo({
+    top: window.scrollY + 313,
+    behavior: 'smooth',
+  });
 }
 
 const validEmail = computed(() => {
