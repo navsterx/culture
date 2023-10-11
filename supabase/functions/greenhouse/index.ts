@@ -27,7 +27,7 @@ serve(async (req) => {
 
     // Delete existing records with the same company_id
     const { data: deleteResult, error: deleteError } = await supabase
-      .from("roles") // Replace with your actual table name
+      .from("jobs") // Replace with your actual table name
       .delete()
       .eq("company_id", company_id);
 
@@ -69,7 +69,6 @@ serve(async (req) => {
 
         const role = await element.evaluate((node) => node.textContent.trim());
 
-        // Filter job roles with "Engineer" or "Developer" in their titles
         if (role.includes("Engineer") || role.includes("Developer")) {
           const jobListing = {
             url: new URL(href, baseUrl).href, // Concatenate with the base URL
@@ -84,7 +83,7 @@ serve(async (req) => {
 
       // Insert the new job listings into your Supabase table
       const { data: insertResult, error: insertError } = await supabase
-        .from("roles") // Replace with your actual table name
+        .from("jobs") // Replace with your actual table name
         .insert(jobListings);
 
       if (insertError) {

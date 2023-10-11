@@ -1,21 +1,19 @@
 <template>
   <div class="p-company">
-    <div class="p-company__hero">
-      <v-fade-transition>
-        <v-sheet :color="company.brand_color" v-if="isLoaded">
-          <v-container>
-            <div class="text-h4 font-weight-medium text-center pa-10">
-              {{ company.name }}
-            </div>
-          </v-container>
-        </v-sheet>
-      </v-fade-transition>
-    </div>
+    <v-fade-transition>
+      <v-sheet :color="company.brand_color" v-if="isLoaded">
+        <v-container>
+          <div class="text-h4 font-weight-medium text-center pa-10">
+            {{ company.name }}
+          </div>
+        </v-container>
+      </v-sheet>
+    </v-fade-transition>
     <v-container>
-      <v-responsive class="align-center">
+      <v-responsive>
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
-            <v-col cols="12" sm="4" v-for="(role, index) in displayedRoles" :key="index">
+            <v-col cols="12" sm="4" v-for="(role, index) in displayedJobs" :key="index">
               <v-sheet class="pa-4" elevation="1" rounded>
                 <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
                 <div class="text-body-2 font-weight-regular mb-2">{{ role.location }}</div>
@@ -52,6 +50,7 @@
       </v-responsive>
     </v-container>
   </div>
+  <email-capture :timeToDisplay="10000" />
 </template>
 
 <script setup>
@@ -61,12 +60,13 @@ import { useRoute } from 'vue-router';
 import InterviewProcess from '@/components/ListItems/InterviewProcess.vue';
 import Perk from '@/components/ListItems/Perk.vue';
 import SidebarItem from '@/components/Cards/SidebarItem.vue';
+import EmailCapture from '@/components/Dialogs/EmailCapture.vue';
 
 let company = ref({});
 let isLoaded = ref(false);
 const vanityUrl = ref(null);
 const route = useRoute();
-const displayedRoles = ref([]);
+const displayedJobs = ref([]);
 
 onMounted(() => {
   vanityUrl.value = route.params.vanityUrl;
@@ -85,8 +85,8 @@ async function getCompanyByVanityUrl() {
     console.log('error ', error);
   } finally {
     isLoaded.value = true;
-    if (company.value.roles) {
-      displayedRoles.value = company.value.roles.slice(0, 3);
+    if (company.value.jobs) {
+      displayedJobs.value = company.value.jobs.slice(0, 3);
     }
   }
 }
@@ -102,10 +102,6 @@ async function getCompanyByVanityUrl() {
     ul {
       margin-left: 25px;
     }
-  }
-
-  &__hero {
-    margin-top: 80px !important;
   }
 }
 </style>

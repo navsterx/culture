@@ -19,12 +19,14 @@ defineProps({
     type: Boolean,
     required: true,
   }
-})
+});
 
 </script>
 
 <style lang="scss">
 .c-perk {
-  &__emoji {}
+  &__emoji {
+    font-size: 20px;
+  }
 }
 </style>

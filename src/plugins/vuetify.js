@@ -5,9 +5,9 @@
  */
 
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
-import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
+import '@mdi/font/css/materialdesignicons.css';
+import 'vuetify/styles';
+import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader';
 
 // Composables
 import { createVuetify } from 'vuetify'
@@ -21,8 +21,9 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          primary: '#E84E36',
-          secondary: '#e7098e',
+          primary: '#67b583',
+          secondary: '#b56799',
+          textPrimary: "#232323"
         },
       },
     },

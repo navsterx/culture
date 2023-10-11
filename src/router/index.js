@@ -1,5 +1,5 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
@@ -17,31 +17,42 @@ const routes = [
       {
         path: '/',
         name: 'Home',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+        component: () => import('@/views/Home.vue'),
       },
       {
         path: '/about',
         name: 'About',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+        component: () => import('@/views/About.vue'),
       },
       {
         path: '/company/:vanityUrl',
         name: 'Company',
-        component: () => import(/* webpackChunkName: "company" */ '@/views/Company.vue'),
+        component: () => import('@/views/Company.vue'),
       },
       {
         path: '/listed',
         name: 'Get Listed',
-        component: () => import(/* webpackChunkName: "listed" */ '@/views/Listed.vue'),
+        component: () => import('@/views/Listed.vue'),
       },
+    ],
+  },
+  {
+    path: '/admin',
+    component: () => import('@/layouts/admin/Default.vue'),
+    children: [
+      {
+        path: '/admin',
+        name: 'AdminDashboard',
+        component: () => import('@/views/admin/Dashboard.vue'),
+      },
+      // Add more admin routes here
     ],
   },
 ];
 
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
-export default router
+export default router;

@@ -1,23 +1,21 @@
 <template>
   <div class="p-home">
-    <div class="p-home__hero pa-4">
+    <div class="bg-primary py-4">
       <v-container>
         <div class="text-h4 text-white font-weight-medium text-center mb-2">
-          Discover UK tech careers that align with you
+          Discover UK tech companies that align with you
         </div>
         <div class="text-body-1 text-white text-center mb-6">
-          Search for a role and/or filter on the benefits & perks to see what the company has to offer!
+          Search for a role and/or filter on the benefits & perks to see what companies have to offer!
         </div>
-        <div class="my-4">
-          <div class="filters d-flex">
-            <div class="roleSearch mr-4">
-              <input-filter v-model="searchedRole" :delay="1000" />
-            </div>
-            <div class="perkSelect">
-              <v-autocomplete color="primary" density="compact" variant="solo" chips closable-chips clearable
-                label="Benefits & Perks" v-model="selectedPerks" :items="filteredPerks" item-title="key"
-                item-value="value" multiple hide-details></v-autocomplete>
-            </div>
+        <div class="d-flex p-home__filters">
+          <div class="p-home__job mr-4">
+            <input-filter v-model="searchedRole" :delay="1000" />
+          </div>
+          <div class="p-home__perks">
+            <v-autocomplete color="primary" density="compact" variant="solo" chips closable-chips clearable
+              label="Benefits & Perks" v-model="selectedPerks" :items="filteredPerks" item-title="key" item-value="value"
+              multiple hide-details></v-autocomplete>
           </div>
         </div>
       </v-container>
@@ -48,7 +46,7 @@
 
 <script setup>
 import { onMounted, ref, computed } from 'vue';
-import { supabase } from '../supabase';
+import { supabase } from '/src/supabase';
 import MasonryWall from '@yeger/vue-masonry-wall'
 
 import InputFilter from '@/components/Inputs/Filter.vue';
@@ -81,7 +79,7 @@ const filteredCompanies = computed(() => {
   } else {
     const filtered = companies.value.filter(company =>
       (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
-      (searchedRole.value === null || (company.roles && company.roles.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
+      (searchedRole.value === null || (company.jobs && company.jobs.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
     );
     return [...filtered]; // Create a new array with filtered results
   }
@@ -116,31 +114,25 @@ const filteredPerks = computed(() => {
   return sortedPerks;
 });
 
-
 </script>
 
 <style lang="scss">
 .p-home {
-  &__hero {
-    background: #E84E36;
-    padding-top: 75px !important;
-  }
-
-  .roleSearch {
+  &__job {
     width: 25%;
   }
 
-  .perkSelect {
+  &__perks {
     width: 75%;
   }
 
   @media (max-width: 768px) {
-    .filters {
+    &__filters {
       flex-direction: column;
     }
 
-    .roleSearch,
-    .perkSelect {
+    &__job,
+    &__perks {
       width: 100%;
       margin: 5px 0 5px 0;
     }

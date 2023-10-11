@@ -4,18 +4,18 @@
       <div class="d-flex align-center mb-2">
         <img width="50" :src="company.logo" class="mr-4 " />
         <div>
-          <div class="text-body-1 font-weight-medium">{{ company.name }}</div>
-          <div class="text-body-2" v-if="company.roles">
-            <span class="font-weight-medium">{{ company.roles.length }}</span>
-            role{{ company.roles.length === 1 ? '' : 's' }} available
+          <div class="text-body-1 font-weight-medium text-textPrimary">{{ company.name }}</div>
+          <div class="text-body-2 text-textPrimary" v-if="company.jobs">
+            <span class="font-weight-medium">{{ company.jobs.length }}</span>
+            role{{ company.jobs.length === 1 ? '' : 's' }} available
           </div>
-          <div class="text-body-2" v-else>
-            No roles available right now
+          <div class="text-body-2 text-textPrimary" v-else>
+            No jobs available right now
           </div>
         </div>
       </div>
       <v-divider class="my-4" />
-      <div class="text-body-2">
+      <div class="text-body-2 text-textPrimary">
         {{ company.description }}
       </div>
     </router-link>
@@ -54,6 +54,7 @@ defineProps({
 
   &__emoji {
     cursor: pointer;
+    font-size: 20px;
   }
 }
 </style>

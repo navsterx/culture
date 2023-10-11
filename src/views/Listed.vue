@@ -1,8 +1,8 @@
 <template>
   <div class="p-listed">
-    <div class="p-listed__hero pa-4">
+    <div class="bg-primary pa-4">
       <v-container>
-        <div class="text-h4 text-white font-weight-medium text-center mb-2">
+        <div class="text-h4 text-white font-weight-medium text-center">
           Get Listed
         </div>
       </v-container>
@@ -19,10 +19,5 @@
 </script>
 
 <style lang="scss">
-.p-listed {
-  &__hero {
-    background: #E84E36;
-    padding-top: 75px !important;
-  }
-}
+.p-listed {}
 </style>
