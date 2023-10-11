@@ -18,8 +18,10 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-form @submit.prevent="subscribe">
-                <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
-                  hide-details="auto" label="Email Address"></v-text-field>
+                <v-fade-transition>
+                  <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
+                    hide-details="auto" label="Email Address"></v-text-field>
+                </v-fade-transition>
                 <div>
                   <v-btn color="white" class="mr-2" variant="flat" @click="subscribe">Subscribe</v-btn>
                   <v-btn color="white" variant="text" @click="cancel">No thanks</v-btn>
