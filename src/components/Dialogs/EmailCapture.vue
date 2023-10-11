@@ -58,23 +58,10 @@ const props = defineProps({
 
 const onFocus = () => {
   focused.value = true;
-
-  // Calculate how much space there is left to scroll down
-  const spaceToScroll = document.body.scrollHeight - (window.scrollY + window.innerHeight);
-
-  // Check if there's enough space to scroll down by 300px
-  if (spaceToScroll >= 300) {
-    window.scrollTo({
-      top: window.scrollY + 300,
-      behavior: 'smooth',
-    });
-  } else {
-    // If there's less than 300px of space or at the bottom, scroll only as much as available
-    window.scrollTo({
-      top: document.body.scrollHeight - window.innerHeight,
-      behavior: 'smooth',
-    });
-  }
+  window.scrollTo({
+    top: window.scrollY + 313,
+    behavior: 'smooth',
+  });
 }
 
 const validEmail = computed(() => {
