@@ -50,20 +50,26 @@ const rules = [
 const snackbar = ref(false);
 const focused = ref(false);
 
-const onFocus = () => {
-  focused.value = true;
-  window.scrollTo({
-    top: window.scrollY + 300,
-    behavior: 'smooth', // You can use 'auto' for instant scrolling
-  });
-}
-
 const props = defineProps({
   timeToDisplay: {
     type: Number,
     required: true
   },
 });
+
+const onFocus = () => {
+  focused.value = true;
+  // Calculate how much space there is left to scroll down
+  const spaceToScroll = document.body.scrollHeight - (window.scrollY + window.innerHeight);
+
+  // Check if there's enough space to scroll down by 300px
+  if (spaceToScroll >= 300) {
+    window.scrollTo({
+      top: window.scrollY + 300,
+      behavior: 'smooth',
+    });
+  }
+}
 
 const validEmail = computed(() => {
   return email.value && rules.every((rule) => rule(email.value) === true);
@@ -112,7 +118,7 @@ watch([localStorage.getItem('optedOut'), localStorage.getItem('subscribed')], ()
 .c-email-capture {
   &__dialog {
     background: rgb(var(--v-theme-primary)) !important;
-    position: fixed !important;
+    position: sticky !important;
     bottom: 0 !important;
     width: 100% !important;
     transition: transform 0.3s ease; // Add transition property for smooth movement
