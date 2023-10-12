@@ -5,7 +5,7 @@ const routes = [
   {
     path: '/',
     component: () => {
-      if (window.location.hostname === 'www.awesomeculture.co.uk' || window.location.hostname === 'www.awesomeculture.io') {
+      if (window.location.hostname === 'www.awesomeculture.co.uk' || window.location.hostname === 'www.awesomeculture.io' || window.location.hostname === 'localhost') {
         // If the hostname is 'www.awesomeculture.co.uk', use the 'coming soon' layout
         return import('@/layouts/default/ComingSoon.vue');
       } else {

@@ -4,11 +4,13 @@
       <img src="/logo.png" width="130" />
     </div>
     <default-view />
+    <cookie-policy />
   </v-app>
 </template>
 
 <script setup>
 import DefaultView from './View.vue'
+import CookiePolicy from '@/components/Dialogs/CookiePolicy.vue';
 </script>
 
 <style>

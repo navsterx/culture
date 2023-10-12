@@ -10,10 +10,14 @@
         </div>
       </v-col>
     </v-row>
+    <cookie-policy />
+    <email-capture :timeToDisplay="500" :showNoThanks="false" />
   </v-app>
 </template>
 
 <script setup>
+import EmailCapture from '@/components/Dialogs/EmailCapture.vue';
+import CookiePolicy from '@/components/Dialogs/CookiePolicy.vue';
 
 </script>
 

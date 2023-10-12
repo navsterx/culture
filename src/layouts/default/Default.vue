@@ -3,6 +3,7 @@
     <header-bar />
     <default-view />
     <footer-bar />
+    <cookie-policy />
   </v-app>
 </template>
 
@@ -10,6 +11,8 @@
 import HeaderBar from './HeaderBar.vue'
 import DefaultView from './View.vue'
 import FooterBar from './FooterBar.vue'
+import CookiePolicy from '@/components/Dialogs/CookiePolicy.vue';
+
 </script>
 
 <style>

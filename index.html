@@ -4,7 +4,7 @@
 <head>
   <!-- Check if the page is loaded from localhost -->
   <script>
-    if (document.location.host !== 'localhost') {
+    if (document.location.host !== 'localhost' || localStorage.getItem('cookies') === true) {
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({

@@ -21,8 +21,9 @@
                   hide-details="auto" label="Email Address" @focus="onFocus" @blur="onBlur"
                   :class="{ 'v-focus': focused }"></v-text-field>
                 <div>
-                  <v-btn color="white" class="mr-2" variant="flat" @click="subscribe">Subscribe</v-btn>
-                  <v-btn color="white" variant="text" @click="cancel">No thanks</v-btn>
+                  <v-btn class="mr-2 text-body-2" color="white" variant="flat" @click="subscribe">Subscribe</v-btn>
+                  <v-btn class="text-body-2" v-if="showNoThanks" color="white" variant="text" @click="cancel">No
+                    thanks</v-btn>
                 </div>
               </v-form>
             </v-col>
@@ -54,6 +55,11 @@ const props = defineProps({
     type: Number,
     required: true
   },
+  showNoThanks: {
+    type: Boolean,
+    required: false,
+    default: true,
+  }
 });
 
 const onFocus = () => {
@@ -69,9 +75,8 @@ const validEmail = computed(() => {
 });
 
 const showDialog = computed(() => {
-  const optedOut = localStorage.getItem('optedOut');
-  const subscribed = localStorage.getItem('subscribed');
-  return !(optedOut || subscribed);
+  const emailOptIn = localStorage.getItem('emailOptIn');
+  return !(emailOptIn);
 });
 
 const subscribe = async () => {
@@ -81,10 +86,10 @@ const subscribe = async () => {
       .insert({ email: email.value });
 
     if (insertError) {
-      localStorage.setItem('subscribed', true);
+      localStorage.setItem('emailOptIn', true);
       dialogOpen.value = false;
     } else {
-      localStorage.setItem('subscribed', true);
+      localStorage.setItem('emailOptIn', true);
       snackbar.value = true;
       dialogOpen.value = false;
     }
@@ -92,7 +97,7 @@ const subscribe = async () => {
 };
 
 const cancel = () => {
-  localStorage.setItem('optedOut', true);
+  localStorage.setItem('emailOptIn', false);
   dialogOpen.value = false;
 };
 
@@ -102,11 +107,10 @@ onMounted(() => {
   }, props.timeToDisplay);
 });
 
-const optedOut = computed(() => localStorage.getItem('optedOut') ?? false);
-const subscribed = computed(() => localStorage.getItem('subscribed') ?? false);
+const emailOptIn = computed(() => localStorage.getItem('emailOptIn') ?? false);
 
-watch([optedOut, subscribed], () => {
-  dialogOpen.value = showDialog.value(optedOut.value, subscribed.value);
+watch([emailOptIn], () => {
+  dialogOpen.value = showDialog.value(emailOptIn.value);
 });
 
 </script>
