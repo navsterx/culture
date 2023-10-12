@@ -2,8 +2,8 @@
   <v-app class="body">
     <v-row align="center" justify="center" class="full-height">
       <v-col cols="12">
-        <div class="text-center">
-          <img src="/logo.png" width="300" />
+        <div class="d-flex justify-center">
+          <v-img src="/logo.png" :max-width="300" />
         </div>
         <div class="text-center text-body-1 font-weight-medium mt-2">
           Coming Soon
