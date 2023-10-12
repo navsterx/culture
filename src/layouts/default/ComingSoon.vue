@@ -1,6 +1,15 @@
 <template>
   <v-app class="body">
-    <div class="text-h6 pa-4">#awesomeculture</div>
+    <v-row align="center" justify="center" class="full-height">
+      <v-col cols="12">
+        <div class="text-center">
+          <img src="/logo.png" width="300" />
+        </div>
+        <div class="text-center text-body-1 font-weight-medium mt-2">
+          Coming Soon
+        </div>
+      </v-col>
+    </v-row>
   </v-app>
 </template>
 
@@ -10,6 +19,10 @@
 
 <style>
 .body {
-  background: rgb(247, 244, 244) !important;
+  height: 100vh;
+}
+
+.full-height {
+  height: 100%;
 }
 </style>
