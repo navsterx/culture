@@ -13,12 +13,12 @@
       <v-responsive>
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
-            <v-col cols="12" sm="4" v-for="(role, index) in displayedJobs" :key="index">
+            <v-col cols="12" sm="3" v-for="(role, index) in displayedJobs" :key="index">
               <v-sheet class="pa-4" elevation="1" rounded>
                 <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
                 <div class="text-body-2 font-weight-regular mb-2">{{ role.location }}</div>
-                <v-btn :color="company.brand_color" size="small" elevation="0" :href="role.url"
-                  target="_blank">Apply</v-btn>
+                <v-btn :color="company.brand_color" block elevation="0" :href="role.url" rounded="lg" target="_blank">Find
+                  out more</v-btn>
               </v-sheet>
             </v-col>
           </v-row>
@@ -86,7 +86,7 @@ async function getCompanyByVanityUrl() {
   } finally {
     isLoaded.value = true;
     if (company.value.jobs) {
-      displayedJobs.value = company.value.jobs.slice(0, 3);
+      displayedJobs.value = company.value.jobs;
     }
   }
 }

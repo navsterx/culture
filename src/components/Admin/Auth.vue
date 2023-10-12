@@ -49,15 +49,17 @@ const handleLogin = async () => {
         options: {
           emailRedirectTo: getURL()
         }
-      })
+      });
       if (error) throw error
+      // todo
       alert('Check your email for the login link!')
     } catch (error) {
       if (error instanceof Error) {
+        // todo
         alert(error.message)
       }
     } finally {
-      loading.value = false
+      loading.value = false;
     }
   }
 }

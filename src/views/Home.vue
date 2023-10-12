@@ -10,7 +10,7 @@
         </div>
         <div class="d-flex p-home__filters">
           <div class="p-home__job mr-4">
-            <input-filter v-model="searchedRole" :delay="1000" />
+            <input-filter v-model="searchedRole" :companies="filteredCompanies" :delay="1000" />
           </div>
           <div class="p-home__perks">
             <v-autocomplete color="primary" density="compact" variant="solo" chips closable-chips clearable
@@ -77,10 +77,19 @@ const filteredCompanies = computed(() => {
   if (selectedPerks.value.length === 0 && (searchedRole.value === null || searchedRole.value === '')) {
     return companies.value;
   } else {
-    const filtered = companies.value.filter(company =>
-      (selectedPerks.value.length === 0 || (company.perks && selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk)))) &&
-      (searchedRole.value === null || (company.jobs && company.jobs.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))))
-    );
+    const filtered = companies.value.filter(company => {
+      const roleMatches = !searchedRole.value || (
+        company.jobs &&
+        company.jobs.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))
+      );
+
+      const perkMatches = selectedPerks.value.length === 0 || (
+        company.perks &&
+        selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk))
+      );
+
+      return roleMatches && perkMatches;
+    });
     return [...filtered]; // Create a new array with filtered results
   }
 });

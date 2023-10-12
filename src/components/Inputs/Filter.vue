@@ -3,41 +3,39 @@
     v-model="internalValue" hide-details />
 </template>
 
-<script>
-import { ref, watch } from 'vue';
+<script setup>
+import { ref, watch, defineEmits } from 'vue';
 
-export default {
-  props: {
-    value: String,
-    delay: {
-      type: Number,
-      default: 3000,
-    },
+const props = defineProps({
+  value: String,
+  delay: {
+    type: Number,
+    default: 3000,
   },
-  setup(props, { emit }) {
-    const internalValue = ref(props.value);
-    const debouncing = ref(false);
-    let timeoutId = null;
+  companies: {
+    type: Array,
+    required: true
+  }
+});
 
-    const updateInternalValue = () => {
-      debouncing.value = false;
-      emit('update:value', internalValue.value);
-    };
+const emit = defineEmits();
 
-    watch(internalValue, () => {
-      debouncing.value = true;
+const internalValue = ref(props.value);
+const debouncing = ref(false);
+let timeoutId = null;
 
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
-      timeoutId = setTimeout(updateInternalValue, props.delay);
-    });
-
-    return {
-      internalValue,
-      debouncing,
-    };
-  },
+const updateInternalValue = () => {
+  debouncing.value = false;
+  emit('update:value', internalValue.value);
 };
+
+watch(internalValue, () => {
+  debouncing.value = true;
+
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+
+  timeoutId = setTimeout(updateInternalValue, props.delay);
+});
 </script>
