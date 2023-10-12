@@ -1,6 +1,6 @@
 <template>
   <v-app class="body">
-    <v-row align="center" justify="center" class="full-height">
+    <v-row align="center" justify="center" class="ma-0">
       <v-col cols="12">
         <div class="d-flex justify-center">
           <v-img src="/logo.png" :max-width="300" />
@@ -17,12 +17,4 @@
 
 </script>
 
-<style>
-.body {
-  height: 100vh;
-}
-
-.full-height {
-  height: 100%;
-}
-</style>
+<style></style>
