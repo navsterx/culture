@@ -3,7 +3,7 @@
     <v-fade-transition>
       <v-sheet :color="company.brand_color" v-if="isLoaded">
         <v-container>
-          <div class="d-flex justify-center py-10">
+          <div class="d-flex justify-center py-8">
             <v-img :src="company.logo" :max-width="150" class="rounded-circle" />
           </div>
         </v-container>
