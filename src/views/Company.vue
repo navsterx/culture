@@ -38,7 +38,7 @@
                   <v-list-item :border="true" :href="job.url" target="_blank" v-for="(job, index) in displayedJobs"
                     :key="index" base-color="textPrimary" :class="{
                       'mb-4': index < displayedJobs.length - 1,
-                      'pa-2': true
+                      'pa-3': true
                     }" rounded="lg" active-color="red">
                     <div class="text-body-1 font-weight-medium">
                       {{ job.role }}
