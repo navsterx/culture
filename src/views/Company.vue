@@ -19,14 +19,14 @@
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
-              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.interviewProcess" rounded>
+              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
                 <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
                   :key="index" :interviewProcess="interviewProcess" />
               </v-sheet>
             </v-col>
             <v-col lg="8" md="8" sm="12">
-              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
+              <v-sheet class="pa-4 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
                 :index="index">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content">
