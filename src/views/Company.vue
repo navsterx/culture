@@ -3,12 +3,9 @@
     <v-fade-transition>
       <v-sheet :color="company.brand_color" v-if="isLoaded">
         <v-container>
-          <div class="d-flex justify-center">
+          <div class="d-flex justify-center py-10">
             <v-img :src="company.logo" :max-width="150" class="rounded-circle" />
           </div>
-          <!-- <div class="text-h4 font-weight-medium py-10">
-            {{ company.name }}
-          </div> -->
         </v-container>
       </v-sheet>
     </v-fade-transition>
