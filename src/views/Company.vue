@@ -115,7 +115,7 @@ async function getCompanyByVanityUrl() {
 <style lang="scss">
 .p-company {
   &__devIcons {
-    font-size: 75px;
+    font-size: 70px;
   }
 
   &__content {
