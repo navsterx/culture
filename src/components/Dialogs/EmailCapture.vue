@@ -18,7 +18,7 @@
             <v-col cols="12" md="6">
               <v-form @submit.prevent="subscribe">
                 <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
-                  hide-details="auto" label="Email Address" @focus="onFocus" @blur="onBlur"
+                  hide-details="auto" label="Email Address" @focus="onFocus"
                   :class="{ 'v-focus': focused }"></v-text-field>
                 <div>
                   <v-btn class="mr-2 text-body-2" color="white" variant="flat" @click="subscribe">Subscribe</v-btn>

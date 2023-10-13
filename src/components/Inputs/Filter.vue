@@ -1,6 +1,6 @@
 <template>
   <v-text-field color="primary" label="Search for a role" density="compact" variant="solo" clearable
-    v-model="internalValue" hide-details />
+    v-model="internalValue" hide-details @focus="onFocus" />
 </template>
 
 <script setup>
@@ -17,6 +17,13 @@ const props = defineProps({
     required: true
   }
 });
+
+const onFocus = () => {
+  window.scrollTo({
+    top: window.scrollY + 313,
+    behavior: 'smooth',
+  });
+}
 
 const emit = defineEmits();
 
