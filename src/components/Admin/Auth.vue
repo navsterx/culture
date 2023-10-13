@@ -32,7 +32,7 @@ const validEmail = computed(() => {
 const getURL = () => {
   const isLocal = window.location.hostname.includes(':3000');
   const baseUrl = isLocal ? 'https://' + window.location.hostname : 'http://' + window.location.hostname + ':3000';
-  return baseUrl + '/admin/dashboard';
+  return baseUrl + '/admin';
 }
 
 const emailRules = [

@@ -13,31 +13,32 @@
       <v-responsive>
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
-            <v-col cols="12" sm="3" v-for="(role, index) in displayedJobs" :key="index">
-              <v-sheet class="pa-4" elevation="1" rounded>
-                <div class="text-body-1 font-weight-medium">{{ role.role }}</div>
-                <div class="text-body-2 font-weight-regular mb-2">{{ role.location }}</div>
-                <v-btn :color="company.brand_color" block elevation="0" :href="role.url" rounded="lg" target="_blank">Find
-                  out more</v-btn>
-              </v-sheet>
-            </v-col>
-          </v-row>
-        </v-fade-transition>
-        <v-fade-transition>
-          <v-row class="pa-1" v-if="isLoaded">
-            <v-col cols="12" sm="4">
+            <v-col cols="12" lg="4" md="4" sm="12">
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
-              <v-sheet class="pa-4" elevation="1" v-if="company.interviewProcess" rounded>
+              <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
                 <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
                   :key="index" :interviewProcess="interviewProcess" />
               </v-sheet>
+              <v-row>
+                <v-col cols="12" lg="12" md="12" sm="12" v-for="(job, index) in displayedJobs" :key="index">
+                  <v-sheet class="pa-4" elevation="1" rounded>
+                    <div class="text-body-1 font-weight-medium">{{ job.role }}</div>
+                    <div class="text-body-2 font-weight-regular mb-4">{{ job.location }} {{ job.type ? "/ "
+                      + role.type
+                      : ''
+                    }}</div>
+                    <v-btn class="text-body-2" :color="company.brand_color" elevation="0" :href="job.url" rounded="lg"
+                      target="_blank">Find Out More</v-btn>
+                  </v-sheet>
+                </v-col>
+              </v-row>
             </v-col>
-            <v-col cols="12" sm="8">
+            <v-col lg="8" md="8" sm="12">
               <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
                 :index="index">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
