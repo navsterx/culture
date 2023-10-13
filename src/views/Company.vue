@@ -112,11 +112,11 @@ async function getCompanyByVanityUrl() {
   &__content {
     img {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     ul {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
 
       &:last-child {
         margin-bottom: 0;
@@ -124,7 +124,7 @@ async function getCompanyByVanityUrl() {
     }
 
     p {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
 
       &:last-child {
         margin-bottom: 0;
