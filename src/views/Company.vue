@@ -37,7 +37,7 @@
                 <div v-for="(job, index) in displayedJobs" :key="index">
                   <v-sheet color="lightGrey" :class="{
                     'pa-3': true,
-                    'mb-3': index < displayedJobs.length - 1,
+                    'mb-4': index < displayedJobs.length - 1,
                     'p-company__link': true
                   }" rounded="lg" @click="jobOut(job.url)">
                     <div class="text-body-1 font-weight-medium">
@@ -113,6 +113,14 @@ function jobOut(url) {
   &__content {
     img {
       width: 100%;
+    }
+
+    p {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     ul {

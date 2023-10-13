@@ -69,7 +69,10 @@ serve(async (req) => {
 
         const role = await element.evaluate((node) => node.textContent.trim());
 
-        if (role.includes("Engineer") || role.includes("Developer")) {
+        if (
+          role.includes("Engineer") || role.includes("Developer") ||
+          role.includes("Data")
+        ) {
           const jobListing = {
             url: new URL(href, baseUrl).href, // Concatenate with the base URL
             role: role,
