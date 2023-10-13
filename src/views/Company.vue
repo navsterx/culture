@@ -33,7 +33,7 @@
                 </div>
               </v-sheet>
               <v-sheet elevation="1" rounded class="pa-4">
-                <sidebar-item title="Available Opportunities" />
+                <sidebar-item title="Available opportunities" />
                 <div v-for="(job, index) in displayedJobs" :key="index">
                   <v-sheet color="lightGrey" :class="{
                     'pa-3': true,
