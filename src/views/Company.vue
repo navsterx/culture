@@ -29,7 +29,7 @@
                   <v-sheet class="pa-4" elevation="1" rounded>
                     <div class="text-body-1 font-weight-medium">{{ job.role }}</div>
                     <div class="text-body-2 font-weight-regular mb-4">{{ job.location }} {{ job.type ? "/ "
-                      + role.type
+                      + job.type
                       : ''
                     }}</div>
                     <v-btn class="text-body-2" :color="company.brand_color" elevation="0" :href="job.url" rounded="lg"
