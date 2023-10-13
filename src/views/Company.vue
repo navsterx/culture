@@ -49,7 +49,7 @@
                       {{ job.salary ? "/ " + job.salary : '' }}
                     </div>
                     <template v-slot:append>
-                      <v-icon icon="mdi-open-in-new" color="primary" size="small"></v-icon>
+                      <v-icon icon="mdi-open-in-new" :color="company.brand_color" size="small"></v-icon>
                     </template>
                   </v-list-item>
                 </v-list>

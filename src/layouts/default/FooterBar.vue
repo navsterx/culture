@@ -1,10 +1,12 @@
 <template>
   <div class="c-footer-bar">
-    <v-container>
-      <div class="text-body-2 text-center">
-        © 2023 Awesome Culture. All rights reserved. Made with ❤️ in the West Midlands, UK.
-      </div>
-    </v-container>
+    <v-sheet>
+      <v-container>
+        <div class="text-body-2 text-center">
+          © 2023 Awesome Culture. All rights reserved. Made with ❤️ in the West Midlands, UK.
+        </div>
+      </v-container>
+    </v-sheet>
   </div>
 </template>
 
@@ -13,7 +15,5 @@
 </script>
 
 <style lang="scss">
-.c-footer-bar {
-  background: #fff;
-}
+.c-footer-bar {}
 </style>
