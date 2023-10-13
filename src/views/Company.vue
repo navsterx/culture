@@ -34,22 +34,25 @@
               </v-sheet>
               <v-sheet elevation="1" rounded class="pa-4">
                 <sidebar-item title="Available Opportunities" />
-                <div v-for="(job, index) in displayedJobs" :key="index">
-                  <v-sheet color="lightGrey" :class="{
-                    'pa-3': true,
-                    'mb-4': index < displayedJobs.length - 1,
-                    'p-company__link': true
-                  }" rounded="lg" @click="jobOut(job.url)">
+                <v-list lines="one">
+                  <v-list-item :border="true" :href="job.url" target="_blank" v-for="(job, index) in displayedJobs"
+                    :key="index" base-color="textPrimary" :class="{
+                      'mb-4': index < displayedJobs.length - 1,
+                      'pa-2': true
+                    }" rounded="lg" active-color="red">
                     <div class="text-body-1 font-weight-medium">
-                      {{ job.role }} <v-icon size="small" icon="mdi-open-in-new" color="primary" />
+                      {{ job.role }}
                     </div>
                     <div class="text-body-2 font-weight-regular">
                       {{ job.location }}
                       {{ job.type ? "/ " + job.type : '' }}
                       {{ job.salary ? "/ " + job.salary : '' }}
                     </div>
-                  </v-sheet>
-                </div>
+                    <template v-slot:append>
+                      <v-icon icon="mdi-open-in-new" color="primary" size="small"></v-icon>
+                    </template>
+                  </v-list-item>
+                </v-list>
               </v-sheet>
             </v-col>
           </v-row>
@@ -98,18 +101,10 @@ async function getCompanyByVanityUrl() {
   }
 }
 
-function jobOut(url) {
-  window.open(url);
-}
-
 </script>
 
 <style lang="scss">
 .p-company {
-  &__link {
-    cursor: pointer;
-  }
-
   &__content {
     img {
       width: 100%;
