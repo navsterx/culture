@@ -2,7 +2,7 @@
   <div class="c-cookie-policy">
     <v-dialog v-model="dialogOpen" width="auto" :max-width="675" persistent>
       <v-card>
-        <v-card-text class="text-body-2">
+        <v-card-text class="text-body-2 pt-6">
           We use cookies and similar technologies to understand how you use our services, improve your experience and
           serve you personalised content and advertising. By clicking "Accept All", you accept all cookies. By clicking
           "Reject All", you reject all cookies except Strictly Necessary cookies.
