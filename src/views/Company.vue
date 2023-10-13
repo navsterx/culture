@@ -40,10 +40,8 @@
                     'mb-3': index < displayedJobs.length - 1,
                     'p-company__link': true
                   }" rounded="lg" @click="jobOut(job.url)">
-                    <div class="text-body-1 font-weight-medium d-flex align-center">
-                      <div>{{ job.role }}</div>
-                      <v-icon size="small" icon="mdi-open-in-new" class="ml-1" color="primary" />
-
+                    <div class="text-body-1 font-weight-medium">
+                      {{ job.role }} <v-icon size="small" icon="mdi-open-in-new" color="primary" />
                     </div>
                     <div class="text-body-2 font-weight-regular">
                       {{ job.location }}
