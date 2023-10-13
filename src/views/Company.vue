@@ -48,11 +48,21 @@
               </v-sheet>
             </v-col>
             <v-col lg="8" md="8" sm="12">
-              <v-sheet class="pa-4 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
+              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
                 :index="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content"></div>
               </v-sheet>
+              <v-sheet class="pa-4 p-company__content" elevation="1" rounded
+                :class="{ 'mb-6': index !== company.content.length - 1 }">
+                <sidebar-item :title="`What tech stack to they use at ${company.name}?`" />
+                <div class="p-company__devIcons d-flex align-center justify-center flex-wrap">
+                  <i class="devicon-dotnetcore-plain colored ma-4"></i>
+                  <i class="devicon-angularjs-plain colored ma-4"></i>
+                  <i class="devicon-sass-original colored ma-4"></i>
+                </div>
+              </v-sheet>
+
             </v-col>
           </v-row>
         </v-fade-transition>
@@ -104,6 +114,10 @@ async function getCompanyByVanityUrl() {
 
 <style lang="scss">
 .p-company {
+  &__devIcons {
+    font-size: 75px;
+  }
+
   &__content {
     img {
       width: 100%;
