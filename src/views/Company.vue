@@ -24,26 +24,33 @@
                 <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
                   :key="index" :interviewProcess="interviewProcess" />
               </v-sheet>
-              <v-row>
-                <v-col cols="12" lg="12" md="12" sm="12" v-for="(job, index) in displayedJobs" :key="index">
-                  <v-sheet class="pa-4" elevation="1" rounded>
-                    <div class="text-body-1 font-weight-medium">{{ job.role }}</div>
-                    <div class="text-body-2 font-weight-regular mb-2">
-                      {{ job.location }}
-                      {{ job.type ? "/ " + job.type : '' }}
-                      {{ job.salary ? "/ " + job.salary : '' }}
-                    </div>
-                    <v-btn class="text-body-2" :color="company.brand_color" elevation="0" :href="job.url" rounded="lg"
-                      target="_blank">Find Out More</v-btn>
-                  </v-sheet>
-                </v-col>
-              </v-row>
             </v-col>
             <v-col lg="8" md="8" sm="12">
               <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
                 :index="index">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content">
+                </div>
+              </v-sheet>
+              <v-sheet elevation="1" rounded class="pa-4">
+                <sidebar-item title="Available Opportunities" />
+                <div v-for="(job, index) in displayedJobs" :key="index">
+                  <v-sheet color="lightGrey" :class="{
+                    'pa-3': true,
+                    'mb-3': index < displayedJobs.length - 1,
+                    'p-company__link': true
+                  }" rounded="lg" @click="jobOut(job.url)">
+                    <div class="text-body-1 font-weight-medium d-flex align-center">
+                      <div>{{ job.role }}</div>
+                      <v-icon size="small" icon="mdi-open-in-new" class="ml-1" color="primary" />
+
+                    </div>
+                    <div class="text-body-2 font-weight-regular">
+                      {{ job.location }}
+                      {{ job.type ? "/ " + job.type : '' }}
+                      {{ job.salary ? "/ " + job.salary : '' }}
+                    </div>
+                  </v-sheet>
                 </div>
               </v-sheet>
             </v-col>
@@ -92,10 +99,19 @@ async function getCompanyByVanityUrl() {
     }
   }
 }
+
+function jobOut(url) {
+  window.open(url);
+}
+
 </script>
 
 <style lang="scss">
 .p-company {
+  &__link {
+    cursor: pointer;
+  }
+
   &__content {
     img {
       width: 100%;

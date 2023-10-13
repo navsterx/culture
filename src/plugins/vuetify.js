@@ -11,9 +11,17 @@ import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader';
 
 // Composables
 import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
+  },
   components: {
     VSkeletonLoader,
   },
@@ -23,7 +31,8 @@ export default createVuetify({
         colors: {
           primary: '#67b583',
           secondary: '#b56799',
-          textPrimary: "#232323"
+          textPrimary: "#232323",
+          lightGrey: "#f5f5f5",
         },
       },
     },
