@@ -3,9 +3,21 @@
     <v-fade-transition>
       <v-sheet :color="company.brand_color" v-if="isLoaded">
         <v-container>
-          <div class="d-flex justify-center py-8">
-            <v-img :src="company.logo" :max-width="150" class="rounded-circle" />
-          </div>
+          <v-row>
+            <v-col cols="12" lg="4" md="4" sm="12">
+              <div class="d-flex justify-center">
+                <v-img :src="company.logo" :max-width="100" class="rounded-circle" />
+              </div>
+            </v-col>
+            <v-col>
+              <div class="text-h5">
+                {{ company.name }}
+              </div>
+              <div class="text-body-2">
+                {{ company.description }}
+              </div>
+            </v-col>
+          </v-row>
         </v-container>
       </v-sheet>
     </v-fade-transition>

@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-1" elevation="1" rounded>
+  <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-4" elevation="1" rounded>
     <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
       <div class="d-flex align-center mb-2">
         <img width="50" :src="company.logo" class="mr-3 rounded-circle" />
@@ -19,12 +19,12 @@
         {{ company.description }}
       </div>
     </router-link>
-    <v-divider class="mt-4 mb-2" v-if="company.perks" />
+    <v-divider class="mt-4 mb-4" v-if="company.perks" />
     <div class="d-flex flex-wrap" v-if="company.perks">
       <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
         max-width="300">
         <template v-slot:activator="{ props }">
-          <div v-bind="props" class="mr-3 mb-2 mt-1 c-company-card__emoji">
+          <div v-bind="props" class="mr-3 c-company-card__emoji">
             {{ perk.emoji }}
           </div>
         </template>
@@ -62,6 +62,7 @@ const letsGo = (vanity_url) => {
   &__emoji {
     cursor: pointer;
     font-size: 20px;
+    line-height: 20px;
   }
 }
 </style>

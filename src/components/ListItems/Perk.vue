@@ -1,6 +1,6 @@
 <template>
   <div class="c-perk">
-    <div class="d-flex align-baseline">
+    <div class="d-flex">
       <div class="mr-2 c-perk__emoji">{{ perk.emoji }}</div>
       <div class="text-body-2">{{ perk.description }}</div>
     </div>
@@ -27,6 +27,7 @@ defineProps({
 .c-perk {
   &__emoji {
     font-size: 20px;
+    line-height: 20px;
   }
 }
 </style>
