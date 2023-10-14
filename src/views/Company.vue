@@ -53,13 +53,11 @@
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content"></div>
               </v-sheet>
-              <v-sheet class="pa-4 p-company__content" elevation="1" rounded
+              <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded
                 :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
                 <div class="p-company__stack d-flex align-center justify-center flex-wrap">
-                  <i class="devicon-dotnetcore-plain colored ma-4"></i>
-                  <i class="devicon-angularjs-plain colored ma-4"></i>
-                  <i class="devicon-sass-original colored ma-4"></i>
+                  <i v-for="(tech, index) in company.techstack" :key="index" class="ma-4 colored" :class="tech.class"></i>
                 </div>
               </v-sheet>
 
