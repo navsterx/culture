@@ -22,7 +22,8 @@
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
                 <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
-                  :key="index" :interviewProcess="interviewProcess" />
+                  :key="index" :interviewProcess="interviewProcess"
+                  :isLast="index < company.interviewProcess.length - 1" />
               </v-sheet>
               <v-sheet elevation="1" rounded class="pa-4">
                 <sidebar-item title="Available Opportunities" />
