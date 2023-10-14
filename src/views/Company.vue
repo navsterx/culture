@@ -56,7 +56,13 @@
               <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
                 <div class="p-company__stack d-flex align-center justify-center flex-wrap">
-                  <i v-for="(tech, index) in company.techstack" :key="index" class="ma-4 colored" :class="tech.class"></i>
+                  <div v-for="(tech, index) in company.techstack" :key="index">
+                    <v-tooltip :text="tech.name" location="bottom">
+                      <template v-slot:activator="{ props }">
+                        <i v-bind="props" class="ma-4 colored" :class="tech.class"></i>
+                      </template>
+                    </v-tooltip>
+                  </div>
                 </div>
               </v-sheet>
             </v-col>
@@ -111,7 +117,9 @@ async function getCompanyByVanityUrl() {
 <style lang="scss">
 .p-company {
   &__stack {
-    font-size: 70px;
+    font-size: 60px;
+    line-height: 60px;
+    cursor: pointer;
   }
 
   &__content {
