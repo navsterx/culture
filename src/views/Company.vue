@@ -31,7 +31,7 @@
                     :key="index" :base-color="company.brand_color" :class="{
                       'mb-4': index < displayedJobs.length - 1,
                       'pa-3': true
-                    }" rounded="lg" active-color="red">
+                    }" rounded="lg">
                     <div class="text-body-1 font-weight-medium">
                       {{ job.role }}
                     </div>
@@ -49,18 +49,16 @@
             </v-col>
             <v-col lg="8" md="8" sm="12">
               <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
-                :index="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
+                :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content"></div>
               </v-sheet>
-              <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded
-                :class="{ 'mb-6': index !== company.content.length - 1 }">
+              <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
                 <div class="p-company__stack d-flex align-center justify-center flex-wrap">
                   <i v-for="(tech, index) in company.techstack" :key="index" class="ma-4 colored" :class="tech.class"></i>
                 </div>
               </v-sheet>
-
             </v-col>
           </v-row>
         </v-fade-transition>
