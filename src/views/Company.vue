@@ -55,8 +55,8 @@
               </v-sheet>
               <v-sheet class="pa-4 p-company__content" elevation="1" rounded
                 :class="{ 'mb-6': index !== company.content.length - 1 }">
-                <sidebar-item :title="`What tech stack to they use at ${company.name}?`" />
-                <div class="p-company__devIcons d-flex align-center justify-center flex-wrap">
+                <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
+                <div class="p-company__stack d-flex align-center justify-center flex-wrap">
                   <i class="devicon-dotnetcore-plain colored ma-4"></i>
                   <i class="devicon-angularjs-plain colored ma-4"></i>
                   <i class="devicon-sass-original colored ma-4"></i>
@@ -114,7 +114,7 @@ async function getCompanyByVanityUrl() {
 
 <style lang="scss">
 .p-company {
-  &__devIcons {
+  &__stack {
     font-size: 70px;
   }
 
