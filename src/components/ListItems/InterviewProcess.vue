@@ -4,7 +4,7 @@
       <div class="ml-2 mr-4 text-body-2 font-weight-medium">{{ index + 1 }}.</div>
       <div class="text-body-2">{{ interviewProcess.step }}</div>
     </div>
-    <v-divider v-if="isLast" class="my-2" />
+    <v-divider v-if="isLast" class="my-3" />
   </div>
 </template>
 

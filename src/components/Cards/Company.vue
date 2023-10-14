@@ -19,7 +19,7 @@
         {{ company.description }}
       </div>
     </router-link>
-    <v-divider class="mt-4 mb-4" v-if="company.perks" />
+    <v-divider class="my-4" v-if="company.perks" />
     <div class="d-flex flex-wrap" v-if="company.perks">
       <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
         max-width="300">
