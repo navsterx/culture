@@ -28,7 +28,7 @@
                 <sidebar-item title="Available Opportunities" />
                 <v-list lines="one">
                   <v-list-item :border="true" :href="job.url" target="_blank" v-for="(job, index) in displayedJobs"
-                    :key="index" base-color="textPrimary" :class="{
+                    :key="index" :base-color="company.brand_color" :class="{
                       'mb-4': index < displayedJobs.length - 1,
                       'pa-3': true
                     }" rounded="lg" active-color="red">
