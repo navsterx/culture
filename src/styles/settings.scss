@@ -4,12 +4,5 @@
  * Configures SASS variables and Vuetify overwrites
  */
 
-// https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
-
-// .v-container {
-//   max-width: 1280px;
-//   margin: 0 auto;
-// }
+@use 'vuetify/settings' with ($body-font-family: 'Poppins',
+);
