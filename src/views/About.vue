@@ -7,6 +7,11 @@
         </div>
       </v-container>
     </div>
+    <v-container>
+      <div class="text-body-2">
+        #todo discuss back story
+      </div>
+    </v-container>
   </div>
 </template>
 
