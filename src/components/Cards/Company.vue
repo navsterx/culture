@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="ma-2 pt-4 pr-4 pl-4 pb-4" elevation="1" rounded>
+  <v-sheet class="pa-4" elevation="1" rounded>
     <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
       <div class="d-flex align-center mb-2">
         <img width="50" :src="company.logo" class="mr-3 rounded-circle" />
@@ -32,6 +32,18 @@
     </div>
     <div v-else class="pt-4"></div>
   </v-sheet>
+
+  <v-sheet class="ml-10 mr-10 mt-4 pa-4" elevation="1" rounded v-if="showJobs">
+    <div v-for="(job, index) in company.jobs" :key="index">
+      <div class="font-weight-medium">
+        {{ job.role }}
+      </div>
+      <div class="font-weight-regular">
+        {{ job.location }}
+      </div>
+      <v-divider v-if="index < company.jobs.length - 1" class="my-2" />
+    </div>
+  </v-sheet>
 </template>
 
 <script setup>
@@ -43,6 +55,11 @@ defineProps({
   company: {
     type: Object,
     required: true
+  },
+  showJobs: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 

@@ -10,7 +10,7 @@
               </div>
             </v-col>
             <v-col>
-              <div class="text-h5">
+              <div class="text-h5 mb-2">
                 {{ company.name }}
               </div>
               <div class="text-body-2">

@@ -22,23 +22,23 @@
     </div>
     <v-fade-transition hide-on-leave>
       <v-container v-if="isLoaded" key="loaded-content">
-        <div class="text-center pa-8 text-body-1" v-if="filteredCompanies.length === 0">Sorry, no companies were found
-          that match your
-          criteria, please try again</div>
-        <masonry-wall v-else :items="filteredCompanies" :ssr-columns="3" :column-width="300">
-          <template #default="{ item, index }">
-            <company-card :key="index" :company="item" />
-          </template>
-        </masonry-wall>
-      </v-container>
-      <v-container v-else key="skeleton-loader">
-        <v-row>
-          <v-col cols="12" md="4" v-for="i in 5" :key="i">
-            <v-skeleton-loader class="mx-auto border" max-width="370"
-              type="list-item-avatar, divider, paragraph, paragraph"></v-skeleton-loader>
-          </v-col>
-          <v-skeleton-loader boilerplate></v-skeleton-loader>
-        </v-row>
+        <div class="text-center pa-8 text-body-1" v-if="filteredCompanies.length === 0">
+          Sorry, no companies were found that match your criteria, please try again
+        </div>
+        <template v-if="searchedRole">
+          <v-row>
+            <v-col cols="12" md="12" v-for="(company, index) in filteredCompanies" :key="index">
+              <company-card :company="company" :show-jobs="true" />
+            </v-col>
+          </v-row>
+        </template>
+        <template v-else>
+          <masonry-wall :items="filteredCompanies" :ssr-columns="3" :column-width="300" :gap="16">
+            <template #default="{ item, index }">
+              <company-card :key="index" :company="item" :show-jobs="false" />
+            </template>
+          </masonry-wall>
+        </template>
       </v-container>
     </v-fade-transition>
   </div>
@@ -74,25 +74,46 @@ async function getCompanies() {
 }
 
 const filteredCompanies = computed(() => {
-  if (selectedPerks.value.length === 0 && (searchedRole.value === null || searchedRole.value === '')) {
-    return companies.value;
+  if (searchedRole.value === null || searchedRole.value === '') {
+    // No role input, return companies based on selected perks
+    if (selectedPerks.value.length > 0) {
+      return companies.value.filter((company) => {
+        // Check if the company has perks that match the selected perks
+        return company.perks.some((perk) => selectedPerks.value.includes(perk.category));
+      });
+    } else {
+      // No role and no selected perks, return all companies
+      return companies.value;
+    }
   } else {
-    const filtered = companies.value.filter(company => {
-      const roleMatches = !searchedRole.value || (
-        company.jobs &&
-        company.jobs.some(role => role.role.toLowerCase().includes(searchedRole.value.toLowerCase()))
+    // Role input is provided, filter companies based on the role
+    const filtered = companies.value.map((company) => {
+      // Filter jobs within each company
+      const filteredJobs = company.jobs.filter((job) =>
+        job.role && searchedRole.value && job.role.toLowerCase().includes(searchedRole.value.toLowerCase())
       );
 
-      const perkMatches = selectedPerks.value.length === 0 || (
-        company.perks &&
-        selectedPerks.value.every(perk => company.perks.map(p => p.category).includes(perk))
-      );
+      if (filteredJobs.length > 0) {
+        // Create a copy of the company with filtered jobs
+        const filteredCompany = { ...company };
+        filteredCompany.jobs = filteredJobs;
+        return filteredCompany;
+      } else {
+        return null; // No matching jobs, exclude the company
+      }
+    }).filter(Boolean); // Remove companies with no matching jobs
 
-      return roleMatches && perkMatches;
-    });
-    return [...filtered]; // Create a new array with filtered results
+    // Filter the filtered companies based on selected perks
+    if (selectedPerks.value.length > 0) {
+      return filtered.filter((company) => {
+        return company.perks.some((perk) => selectedPerks.value.includes(perk.category));
+      });
+    }
+
+    return filtered; // Return the companies after role filtering
   }
 });
+
 
 const filteredPerks = computed(() => {
   let uniquePerks;
