@@ -35,10 +35,10 @@
 
   <v-sheet class="ml-10 mt-4 pa-4" elevation="1" rounded v-if="showJobs">
     <div v-for="(job, index) in company.jobs" :key="index">
-      <div class="font-weight-medium">
+      <div class="text-body-1 font-weight-medium">
         {{ job.role }}
       </div>
-      <div class="font-weight-regular">
+      <div class="text-body-2 font-weight-regular">
         {{ job.location }}
       </div>
       <v-divider v-if="index < company.jobs.length - 1" class="my-2" />
