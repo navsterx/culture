@@ -42,7 +42,7 @@
       </v-container>
       <v-container v-else>
         <div class="d-flex pa-10 justify-center">
-          <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <v-progress-circular indeterminate color="primary" :size="50"></v-progress-circular>
         </div>
       </v-container>
     </v-fade-transition>
