@@ -1,48 +1,45 @@
 <template>
   <v-text-field color="primary" label="Search for a role" density="compact" variant="solo" clearable
-    v-model="internalValue" hide-details @focus="onFocus" />
+    v-model="internalValue" hide-details @input="onInput" />
 </template>
 
-<script setup>
-import { ref, watch, defineEmits } from 'vue';
+<script>
+import { ref, watch } from 'vue';
 
-const props = defineProps({
-  value: String,
-  delay: {
-    type: Number,
-    default: 3000,
+export default {
+  props: {
+    value: String,
+    delay: {
+      type: Number,
+      default: 3000,
+    },
+    companies: {
+      type: Array,
+      required: true,
+    },
   },
-  companies: {
-    type: Array,
-    required: true
-  }
-});
+  setup(props, { emit }) {
+    const internalValue = ref(props.value);
+    let timeoutId = null;
 
-const onFocus = () => {
-  window.scrollTo({
-    top: window.scrollY + 313,
-    behavior: 'smooth',
-  });
-}
+    const updateInternalValue = () => {
+      emit('update:value', internalValue.value);
+    };
 
-const emit = defineEmits();
+    const onInput = () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
 
-const internalValue = ref(props.value);
-const debouncing = ref(false);
-let timeoutId = null;
+      timeoutId = setTimeout(() => {
+        updateInternalValue();
+      }, props.delay);
+    };
 
-const updateInternalValue = () => {
-  debouncing.value = false;
-  emit('update:value', internalValue.value);
+    return {
+      internalValue,
+      onInput,
+    };
+  },
 };
-
-watch(internalValue, () => {
-  debouncing.value = true;
-
-  if (timeoutId) {
-    clearTimeout(timeoutId);
-  }
-
-  timeoutId = setTimeout(updateInternalValue, props.delay);
-});
 </script>

@@ -5,7 +5,7 @@
         <v-container>
           <v-row>
             <v-col cols="12" lg="4" md="4" sm="12">
-              <div class="d-flex justify-center">
+              <div class="d-flex justify-center py-5">
                 <v-img :src="company.logo" :max-width="100" class="rounded-circle" />
               </div>
             </v-col>
@@ -16,6 +16,7 @@
               <div class="text-body-2">
                 {{ company.description }}
               </div>
+
             </v-col>
           </v-row>
         </v-container>
@@ -68,7 +69,7 @@
               </v-sheet>
               <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
-                <div class="p-company__stack d-flex align-center justify-center flex-wrap">
+                <div class="p-company__stack d-flex align-center  flex-wrap">
                   <div v-for="(tech, index) in company.techstack" :key="index">
                     <v-tooltip :text="tech.name" location="bottom">
                       <template v-slot:activator="{ props }">
@@ -130,8 +131,8 @@ async function getCompanyByVanityUrl() {
 <style lang="scss">
 .p-company {
   &__stack {
-    font-size: 60px;
-    line-height: 60px;
+    font-size: 40px;
+    line-height: 40px;
     cursor: pointer;
     gap: 24px;
   }
