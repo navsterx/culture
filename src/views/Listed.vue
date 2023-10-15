@@ -9,7 +9,7 @@
     </div>
     <v-container>
       <div class="text-body-2">
-        Invite for now?
+        #todo register interest submission form
       </div>
     </v-container>
   </div>
