@@ -1,6 +1,6 @@
 <template>
   <div class="p-home">
-    <div class="bg-primary py-4">
+    <v-sheet color="primary" class="py-4">
       <v-container>
         <div class="text-h4 text-white font-weight-medium text-center mb-2">
           Discover UK tech companies that align with you
@@ -19,7 +19,7 @@
           </div>
         </div>
       </v-container>
-    </div>
+    </v-sheet>
     <v-fade-transition hide-on-leave>
       <v-container v-if="isLoaded" key="loaded-content">
         <div class="text-center pa-8 text-body-1" v-if="filteredCompanies.length === 0">
@@ -39,6 +39,11 @@
             </template>
           </masonry-wall>
         </template>
+      </v-container>
+      <v-container v-else>
+        <div class="d-flex pa-10 justify-center">
+          <v-progress-circular indeterminate color="primary"></v-progress-circular>
+        </div>
       </v-container>
     </v-fade-transition>
   </div>
