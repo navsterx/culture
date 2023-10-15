@@ -33,7 +33,7 @@
     <div v-else class="pt-4"></div>
   </v-sheet>
 
-  <v-sheet class="ml-10 mr-10 mt-4 pa-4" elevation="1" rounded v-if="showJobs">
+  <v-sheet class="ml-10 mt-4 pa-4" elevation="1" rounded v-if="showJobs">
     <div v-for="(job, index) in company.jobs" :key="index">
       <div class="font-weight-medium">
         {{ job.role }}
