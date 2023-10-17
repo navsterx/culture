@@ -2,7 +2,8 @@
   <div class="p-company">
     <v-fade-transition>
       <div v-if="isLoaded">
-        <v-sheet :color="company.brand_color" min-height="250">
+        <v-sheet :color="company.brand_color" min-height="325"
+          style="background: url('https://szesvbwpqmieaxppcjuh.supabase.co/storage/v1/object/public/images/io-studios/team.jpg'); background-repeat: no-repeat; background-size: cover;">
           <v-container style="position: relative">
             <v-row class="p-company__logo-container">
               <v-col cols="12" lg="4" md="4" sm="12">
@@ -168,7 +169,7 @@ async function getCompanyByVanityUrl() {
   &__logo-container {
     position: absolute;
     width: 100%;
-    top: 175px
+    top: 275px
   }
 
   &__logo {
