@@ -27,7 +27,7 @@
                   <div class="text-body-2 mb-4">
                     {{ company.description }}
                   </div>
-                  <div class="d-flex text-body-2" style="gap: 24px">
+                  <div class="d-flex text-body-2 p-company__social-container">
                     <div v-if="company.website">
                       Website: <a :href="company.website" target="_blank" class="text-decoration-none">{{
                         company.website }}</a>
@@ -192,6 +192,15 @@ async function getCompanyByVanityUrl() {
     @media (max-width: 959px) {
       padding-top: 86px;
     }
+  }
+
+  &__social-container {
+    @media (max-width: 959px) {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    gap: 24px;
   }
 
   &__social-icons {
