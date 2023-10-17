@@ -14,7 +14,8 @@
             </v-row>
           </v-container>
         </v-sheet>
-        <v-sheet color="white" min-height="125" style="position: relative; border-bottom: 1px solid lightgrey">
+        <v-sheet class="pa-4" color="white" min-height="125"
+          style="position: relative; border-bottom: 1px solid lightgrey">
           <v-container>
             <v-row class="p-company__social">
               <v-col cols="12" lg="4" md="4" sm="12">
