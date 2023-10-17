@@ -1,26 +1,51 @@
 <template>
   <div class="p-company">
     <v-fade-transition>
-      <v-sheet :color="company.brand_color" v-if="isLoaded" class="pa-5">
-        <v-container>
-          <v-row>
-            <v-col cols="12" lg="4" md="4" sm="12">
-              <div class="d-flex justify-center">
-                <v-img :src="company.logo" :max-width="100" class="rounded-circle" />
-              </div>
-            </v-col>
-            <v-col>
-              <div class="text-h5 mb-2">
-                {{ company.name }}
-              </div>
-              <div class="text-body-2">
-                {{ company.description }}
-              </div>
-
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-sheet>
+      <div v-if="isLoaded">
+        <v-sheet :color="company.brand_color" min-height="250">
+          <v-container style="position: relative">
+            <v-row class="p-company__logo-container">
+              <v-col cols="12" lg="4" md="4" sm="12">
+                <div class="d-flex justify-center">
+                  <v-img :src="company.logo" :max-width="175" style="z-index: 1" class="p-company__logo rounded-circle" />
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-sheet>
+        <v-sheet color="white" min-height="125" style="position: relative; border-bottom: 1px solid lightgrey">
+          <v-container>
+            <v-row class="p-company__social">
+              <v-col cols="12" lg="4" md="4" sm="12">
+              </v-col>
+              <v-col cols="12" lg="8" md="4" sm="12">
+                <div>
+                  <div class="text-h5 font-weight-medium mb-2 text-textPrimary">
+                    {{ company.name }}
+                  </div>
+                  <div class="text-body-2 mb-4">
+                    {{ company.description }}
+                  </div>
+                  <div class="d-flex text-body-2" style="gap: 16px">
+                    <div v-if="company.website">
+                      Website: <a :href="company.website">{{
+                        company.website }}</a>
+                    </div>
+                    <div v-if="company.social_linkedin">
+                      LinkedIn: <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`">{{
+                        company.social_linkedin }}</a>
+                    </div>
+                    <div v-if="company.social_x">
+                      X: <a :href="`https://www.x.com/${company.social_x}`">{{
+                        company.social_x }}</a>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-sheet>
+      </div>
     </v-fade-transition>
     <v-container>
       <v-responsive>
@@ -29,23 +54,24 @@
             <v-col cols="12" lg="4" md="4" sm="12">
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
-                <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
+                <perk v-for="(  perk, index  ) in   company.perks  " :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
-                <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
+                <interview-process v-for="(  interviewProcess, index  ) in   company.interviewProcess  " :index="index"
                   :key="index" :interviewProcess="interviewProcess"
                   :isLast="index < company.interviewProcess.length - 1" />
               </v-sheet>
               <v-sheet elevation="1" rounded class="pa-4">
                 <sidebar-item title="Available Opportunities" />
                 <v-list lines="one">
-                  <v-list-item :border="true" :href="job.url" target="_blank" v-for="(job, index) in displayedJobs"
-                    :key="index" :base-color="company.brand_color" :class="{
+                  <v-list-item :border="true" :href="job.url" target="_blank"
+                    v-for="(  job, index  ) in   displayedJobs  " :key="index" :base-color="company.brand_color" :class="{
                       'mb-4': index < displayedJobs.length - 1,
                       'pa-3': true
-                    }" rounded="lg">
+                    }
+                      " rounded="lg">
                     <div class="text-body-1 font-weight-medium">
                       {{ job.role }}
                     </div>
@@ -62,15 +88,16 @@
               </v-sheet>
             </v-col>
             <v-col lg="8" md="8" sm="12">
-              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
-                :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
+              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded
+                v-for="(  item, index  ) in   company.content  " :key="index"
+                :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content"></div>
               </v-sheet>
               <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
                 <div class="p-company__stack d-flex align-center  flex-wrap">
-                  <div v-for="(tech, index) in company.techstack" :key="index">
+                  <div v-for="(  tech, index  ) in   company.techstack  " :key="index">
                     <v-tooltip :text="tech.name" location="bottom">
                       <template v-slot:activator="{ props }">
                         <i v-bind="props" class="colored" :class="tech.class"></i>
@@ -135,6 +162,23 @@ async function getCompanyByVanityUrl() {
     line-height: 40px;
     cursor: pointer;
     gap: 24px;
+  }
+
+  &__logo-container {
+    position: absolute;
+    width: 100%;
+    top: 175px
+  }
+
+  &__logo {
+    border: 3px solid #fff;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.096), 0 6px 20px 0 rgba(0, 0, 0, 0.082) !important;
+  }
+
+  &__social {
+    @media (max-width: 959px) {
+      padding-top: 86px;
+    }
   }
 
   &__content {
