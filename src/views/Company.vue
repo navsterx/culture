@@ -28,7 +28,7 @@
                   <div class="text-body-2 mb-4">
                     {{ company.description }}
                   </div>
-                  <div class="d-flex text-body-2 p-company__social-container">
+                  <div class="d-flex align-center text-body-2 p-company__social-container">
                     <div v-if="company.website">
                       <div class="d-flex align-center">
                         <div class="mr-2">
