@@ -27,19 +27,29 @@
                   <div class="text-body-2 mb-4">
                     {{ company.description }}
                   </div>
-                  <div class="d-flex text-body-2" style="gap: 16px">
+                  <div class="d-flex text-body-2" style="gap: 24px">
                     <div v-if="company.website">
-                      Website: <a :href="company.website" target="_blank">{{
+                      Website: <a :href="company.website" target="_blank" class="text-decoration-none">{{
                         company.website }}</a>
                     </div>
                     <div v-if="company.social_linkedin">
-                      LinkedIn: <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`"
-                        target="_blank">{{
-                          company.social_linkedin }}</a>
+                      <div class="d-flex align-center">
+                        <div class="mr-2">
+                          <v-img src="/images/social/linkedin.png" :min-width="14" :min-height="14" />
+                        </div>
+                        <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`"
+                          class="text-decoration-none" target="_blank">{{
+                            company.social_linkedin }}</a>
+                      </div>
                     </div>
-                    <div v-if="company.social_x">
-                      X: <a :href="`https://www.x.com/${company.social_x}`" target="_blank">{{
-                        company.social_x }}</a>
+                    <div v-if="company.social_x" class="d-flex align-center">
+                      <div class="mr-2">
+                        <v-img src="/images/social/logo-black.png" :min-width="14" :min-height="14" />
+                      </div>
+                      <div><a :href="`https://www.x.com/${company.social_x}`" target="_blank"
+                          class="text-decoration-none">{{
+                            company.social_x }}</a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -56,20 +66,21 @@
             <v-col cols="12" lg="4" md="4" sm="12">
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
-                <perk v-for="(  perk, index  ) in   company.perks  " :key="index" :perk="perk"
+                <perk v-for="(   perk, index   ) in    company.perks   " :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
-                <interview-process v-for="(  interviewProcess, index  ) in   company.interviewProcess  " :index="index"
-                  :key="index" :interviewProcess="interviewProcess"
+                <interview-process v-for="(   interviewProcess, index   ) in    company.interviewProcess   "
+                  :index="index" :key="index" :interviewProcess="interviewProcess"
                   :isLast="index < company.interviewProcess.length - 1" />
               </v-sheet>
               <v-sheet elevation="1" rounded class="pa-4">
                 <sidebar-item title="Available Opportunities" />
                 <v-list lines="one">
                   <v-list-item :border="true" :href="job.url" target="_blank"
-                    v-for="(  job, index  ) in   displayedJobs  " :key="index" :base-color="company.brand_color" :class="{
+                    v-for="(   job, index   ) in    displayedJobs   " :key="index" :base-color="company.brand_color"
+                    :class="{
                       'mb-4': index < displayedJobs.length - 1,
                       'pa-3': true
                     }
@@ -91,7 +102,7 @@
             </v-col>
             <v-col lg="8" md="8" sm="12">
               <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded
-                v-for="(  item, index  ) in   company.content  " :key="index"
+                v-for="(   item, index   ) in    company.content   " :key="index"
                 :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <div class="text-body-2 font-weight-regular mt-4" v-html="item.content"></div>
@@ -99,7 +110,7 @@
               <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
                 <div class="p-company__stack d-flex align-center  flex-wrap">
-                  <div v-for="(  tech, index  ) in   company.techstack  " :key="index">
+                  <div v-for="(   tech, index   ) in    company.techstack   " :key="index">
                     <v-tooltip :text="tech.name" location="bottom">
                       <template v-slot:activator="{ props }">
                         <i v-bind="props" class="colored" :class="tech.class"></i>
@@ -181,6 +192,10 @@ async function getCompanyByVanityUrl() {
     @media (max-width: 959px) {
       padding-top: 86px;
     }
+  }
+
+  &__social-icons {
+    text-decoration: none;
   }
 
   &__content {
