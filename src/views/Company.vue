@@ -28,15 +28,16 @@
                   </div>
                   <div class="d-flex text-body-2" style="gap: 16px">
                     <div v-if="company.website">
-                      Website: <a :href="company.website">{{
+                      Website: <a :href="company.website" target="_blank">{{
                         company.website }}</a>
                     </div>
                     <div v-if="company.social_linkedin">
-                      LinkedIn: <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`">{{
-                        company.social_linkedin }}</a>
+                      LinkedIn: <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`"
+                        target="_blank">{{
+                          company.social_linkedin }}</a>
                     </div>
                     <div v-if="company.social_x">
-                      X: <a :href="`https://www.x.com/${company.social_x}`">{{
+                      X: <a :href="`https://www.x.com/${company.social_x}`" target="_blank">{{
                         company.social_x }}</a>
                     </div>
                   </div>
