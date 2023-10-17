@@ -30,8 +30,13 @@
                   </div>
                   <div class="d-flex text-body-2 p-company__social-container">
                     <div v-if="company.website">
-                      Website: <a :href="company.website" target="_blank" class="text-decoration-none">{{
-                        company.website }}</a>
+                      <div class="d-flex align-center">
+                        <div class="mr-2">
+                          <v-icon :min-width="14" :min-height="14">mdi-home</v-icon>
+                        </div>
+                        <a :href="company.website" class="text-decoration-none text-textPrimary" target="_blank">{{
+                          company.name }}</a>
+                      </div>
                     </div>
                     <div v-if="company.social_linkedin">
                       <div class="d-flex align-center">
@@ -39,7 +44,7 @@
                           <v-img src="/images/social/linkedin.png" :min-width="14" :min-height="14" />
                         </div>
                         <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`"
-                          class="text-decoration-none" target="_blank">{{
+                          class="text-decoration-none text-textPrimary" target="_blank">{{
                             company.social_linkedin }}</a>
                       </div>
                     </div>
@@ -48,7 +53,7 @@
                         <v-img src="/images/social/logo-black.png" :min-width="14" :min-height="14" />
                       </div>
                       <div><a :href="`https://www.x.com/${company.social_x}`" target="_blank"
-                          class="text-decoration-none">{{
+                          class="text-decoration-none text-textPrimary">{{
                             company.social_x }}</a>
                       </div>
                     </div>
