@@ -4,7 +4,7 @@
       <v-container class="pa-4">
         <div class="d-flex justify-space-between align-center">
           <router-link to="/">
-            <v-img src="/logo.png" width="130" />
+            <v-img src="/logo.png" width="130" alt="Logo" />
           </router-link>
           <v-menu location="bottom right">
             <template v-slot:activator="{ props }">

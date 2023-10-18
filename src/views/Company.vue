@@ -57,6 +57,15 @@
                             company.social_x }}</a>
                       </div>
                     </div>
+                    <div v-if="company.social_x" class="d-flex align-center">
+                      <div class="mr-2">
+                        <v-img src="/images/social/logo-black.png" :min-width="14" :min-height="14" />
+                      </div>
+                      <div><a :href="`https://www.facebook.com/${company.social_facebook}`" target="_blank"
+                          class="text-decoration-none text-textSecondary">{{
+                            company.social_facebook }}</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </v-col>

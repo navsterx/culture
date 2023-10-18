@@ -2,7 +2,7 @@
   <v-sheet class="pa-4" elevation="1" rounded>
     <router-link :to="`/company/${company.vanity_url}`" class="c-company-card__item">
       <div class="d-flex align-center mb-2">
-        <img width="50" :src="company.logo" class="mr-3 rounded-circle" />
+        <img width="50" :src="company.logo" class="mr-3 rounded-circle" :alt="company.name" />
         <div>
           <div class="text-body-1 font-weight-medium text-textPrimary">{{ company.name }}</div>
           <div class="text-body-2 text-textPrimary" v-if="company.jobs" @click.prevent="letsGo(company.vanity_url)">
