@@ -176,6 +176,8 @@ async function getCompanyByVanityUrl() {
 
 <style lang="scss">
 .p-company {
+  overflow-x: hidden;
+
   &__stack {
     font-size: 40px;
     line-height: 40px;
@@ -184,7 +186,6 @@ async function getCompanyByVanityUrl() {
   }
 
   &__header {
-    width: calc(100% - 2px);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
