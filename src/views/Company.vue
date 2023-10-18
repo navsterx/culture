@@ -41,7 +41,7 @@
                     <div v-if="company.social_linkedin">
                       <div class="d-flex align-center">
                         <div class="mr-2">
-                          <v-img src="/images/social/linkedin.png" :min-width="14" :min-height="14" />
+                          <v-img class="ml-1" src="/images/social/linkedin.png" :min-width="14" :min-height="14" />
                         </div>
                         <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`"
                           class="text-decoration-none text-textSecondary" target="_blank">{{
@@ -50,7 +50,7 @@
                     </div>
                     <div v-if="company.social_x" class="d-flex align-center">
                       <div class="mr-2">
-                        <v-img src="/images/social/logo-black.png" :min-width="14" :min-height="14" />
+                        <v-img class="ml-1" src="/images/social/logo-black.png" :min-width="14" :min-height="14" />
                       </div>
                       <div><a :href="`https://www.x.com/${company.social_x}`" target="_blank"
                           class="text-decoration-none text-textSecondary">{{
