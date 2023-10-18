@@ -184,6 +184,7 @@ async function getCompanyByVanityUrl() {
   }
 
   &__header {
+    width: calc(100% - 2px);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
