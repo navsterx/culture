@@ -31,7 +31,7 @@
                   <div class="d-flex text-body-2 p-company__social-container">
                     <div v-if="company.website">
                       <div class="d-flex align-center">
-                        <div class="mr-2">
+                        <div class="mr-1">
                           <v-icon :min-width="14" :min-height="14">mdi-home</v-icon>
                         </div>
                         <a :href="company.website" class="text-decoration-none text-textSecondary" target="_blank">{{
