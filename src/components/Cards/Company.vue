@@ -5,7 +5,7 @@
         <img width="50" :src="company.logo" class="mr-3 rounded-circle" :alt="company.name" />
         <div>
           <div class="text-body-1 font-weight-medium text-textPrimary">{{ company.name }}</div>
-          <div class="text-body-2 text-textPrimary" v-if="company.jobs" @click.prevent="letsGo(company.vanity_url)">
+          <div class="text-body-2 text-textPrimary" v-if="company.jobs">
             <span class="font-weight-medium">{{ company.jobs.length }}</span>
             role{{ company.jobs.length === 1 ? '' : 's' }} available
           </div>
@@ -47,9 +47,6 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter()
 
 defineProps({
   company: {
@@ -62,10 +59,6 @@ defineProps({
     default: false
   }
 });
-
-const letsGo = (vanity_url) => {
-  router.push(`/company/${vanity_url}#jobs`);
-}
 
 </script>
 

@@ -2,8 +2,8 @@
   <div class="p-company">
     <v-fade-transition>
       <div v-if="isLoaded">
-        <v-sheet :color="company.brand_color" min-height="325"
-          style="background: url('https://szesvbwpqmieaxppcjuh.supabase.co/storage/v1/object/public/images/io-studios/team.jpg'); background-repeat: no-repeat; background-size: cover; background-position:top;">
+        <v-sheet class="p-company__header" :color="company.brand_color"
+          style="background-image: url('https://szesvbwpqmieaxppcjuh.supabase.co/storage/v1/object/public/images/io-studios/team.jpg'); ">
           <v-container style="position: relative">
             <v-row class="p-company__logo-container">
               <v-col cols="12" lg="4" md="4" sm="12">
@@ -20,7 +20,7 @@
             <v-row class="p-company__social">
               <v-col cols="12" lg="4" md="4" sm="12">
               </v-col>
-              <v-col cols="12" lg="8" md="4" sm="12">
+              <v-col cols="12" lg="8" md="8" sm="12">
                 <div>
                   <div class="text-h5 font-weight-medium mb-2 text-textPrimary">
                     {{ company.name }}
@@ -28,7 +28,7 @@
                   <div class="text-body-2 mb-4">
                     {{ company.description }}
                   </div>
-                  <div class="d-flex align-center text-body-2 p-company__social-container">
+                  <div class="d-flex text-body-2 p-company__social-container">
                     <div v-if="company.website">
                       <div class="d-flex align-center">
                         <div class="mr-2">
@@ -55,15 +55,6 @@
                       <div><a :href="`https://www.x.com/${company.social_x}`" target="_blank"
                           class="text-decoration-none text-textSecondary">{{
                             company.social_x }}</a>
-                      </div>
-                    </div>
-                    <div v-if="company.social_x" class="d-flex align-center">
-                      <div class="mr-2">
-                        <v-img src="/images/social/logo-black.png" :min-width="14" :min-height="14" />
-                      </div>
-                      <div><a :href="`https://www.facebook.com/${company.social_facebook}`" target="_blank"
-                          class="text-decoration-none text-textSecondary">{{
-                            company.social_facebook }}</a>
                       </div>
                     </div>
                   </div>
@@ -192,10 +183,25 @@ async function getCompanyByVanityUrl() {
     gap: 24px;
   }
 
+  &__header {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    min-height: 325px;
+
+    @media (max-width: 959px) {
+      min-height: 175px;
+    }
+  }
+
   &__logo-container {
     position: absolute;
     width: 100%;
-    top: 275px
+    top: 275px;
+
+    @media (max-width: 959px) {
+      top: 90px;
+    }
   }
 
   &__logo {
@@ -205,7 +211,7 @@ async function getCompanyByVanityUrl() {
 
   &__social {
     @media (max-width: 959px) {
-      padding-top: 86px;
+      padding-top: 50px;
     }
   }
 
