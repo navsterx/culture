@@ -2,8 +2,7 @@
   <div class="p-company">
     <v-fade-transition>
       <div v-if="isLoaded">
-        <v-sheet class="p-company__header" :color="company.brand_color"
-          style="background-image: url('https://szesvbwpqmieaxppcjuh.supabase.co/storage/v1/object/public/images/io-studios/team.jpg'); ">
+        <v-sheet class="p-company__header" :color="company.brand_color" style="background-image: url('/io.jpg'); ">
           <v-container style="position: relative">
             <v-row class="p-company__logo-container">
               <v-col cols="12" lg="4" md="4" sm="12">
