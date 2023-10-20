@@ -171,8 +171,6 @@ async function getCompanyByVanityUrl() {
 const mapSrc = computed(() => {
   if (company && isLoaded) {
     return `https://www.google.com/maps/embed/v1/place?key=${googleMapAPIKey}&q=${encodeURIComponent(company.value.name)}&zoom=10`;
-  } else {
-    return null;
   }
 });
 
