@@ -3,10 +3,8 @@
     <v-fade-transition>
       <div v-if="isLoaded">
         <v-sheet class="p-company__header" :color="company.brand_color">
-          <iframe width="100%" height="325" style="border:0" loading="lazy" allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDjsnfJ5T2VYIelmvn_zUpZTOoNdYgO1X8
-    &q=ioStudios, Solihull&zoom=10">
-          </iframe>
+          <iframe :src="mapSrc" width="100%" height="325" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </v-sheet>
         <v-sheet class="pa-4" color="white" min-height="125"
           style="position: relative; border-bottom: 1px solid lightgrey">
@@ -132,7 +130,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { supabase } from '../supabase'
 import { useRoute } from 'vue-router';
 import InterviewProcess from '@/components/ListItems/InterviewProcess.vue';
@@ -145,6 +143,7 @@ let isLoaded = ref(false);
 const vanityUrl = ref(null);
 const route = useRoute();
 const displayedJobs = ref([]);
+const googleMapAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
 onMounted(() => {
   vanityUrl.value = route.params.vanityUrl;
@@ -168,6 +167,14 @@ async function getCompanyByVanityUrl() {
     }
   }
 }
+
+const mapSrc = computed(() => {
+  if (company && isLoaded) {
+    return `https://www.google.com/maps/embed/v1/place?key=${googleMapAPIKey}&q=${encodeURIComponent(company.value.name)}&zoom=10`;
+  } else {
+    return null;
+  }
+});
 
 </script>
 
