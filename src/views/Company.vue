@@ -2,22 +2,20 @@
   <div class="p-company">
     <v-fade-transition>
       <div v-if="isLoaded">
-        <v-sheet class="p-company__header" :color="company.brand_color" style="background-image: url('/io.jpg'); ">
-          <v-container style="position: relative">
-            <v-row class="p-company__logo-container">
-              <v-col cols="12" lg="4" md="4" sm="12">
-                <div class="d-flex justify-center">
-                  <v-img :src="company.logo" :max-width="175" style="z-index: 1" class="p-company__logo rounded-circle" />
-                </div>
-              </v-col>
-            </v-row>
-          </v-container>
+        <v-sheet class="p-company__header" :color="company.brand_color">
+          <iframe width="100%" height="325" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDjsnfJ5T2VYIelmvn_zUpZTOoNdYgO1X8
+    &q=ioStudios, Solihull&zoom=10">
+          </iframe>
         </v-sheet>
         <v-sheet class="pa-4" color="white" min-height="125"
           style="position: relative; border-bottom: 1px solid lightgrey">
           <v-container>
             <v-row class="p-company__social">
               <v-col cols="12" lg="4" md="4" sm="12">
+                <div class="d-flex justify-center">
+                  <v-img :src="company.logo" :max-width="175" style="z-index: 1" class="p-company__logo rounded-circle" />
+                </div>
               </v-col>
               <v-col cols="12" lg="8" md="8" sm="12">
                 <div>
@@ -185,35 +183,16 @@ async function getCompanyByVanityUrl() {
   }
 
   &__header {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-    min-height: 325px;
+    height: 325px;
 
     @media (max-width: 959px) {
-      min-height: 175px;
-    }
-  }
-
-  &__logo-container {
-    position: absolute;
-    width: 100%;
-    top: 275px;
-
-    @media (max-width: 959px) {
-      top: 90px;
+      height: 325px;
     }
   }
 
   &__logo {
     border: 3px solid #fff;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.096), 0 6px 20px 0 rgba(0, 0, 0, 0.082) !important;
-  }
-
-  &__social {
-    @media (max-width: 959px) {
-      padding-top: 50px;
-    }
   }
 
   &__social-container {
