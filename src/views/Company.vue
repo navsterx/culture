@@ -12,7 +12,8 @@
             <v-row class="p-company__social">
               <v-col cols="12" lg="4" md="4" sm="12">
                 <div class="d-flex justify-center">
-                  <v-img :src="company.logo" :max-width="175" style="z-index: 1" class="p-company__logo rounded-circle" />
+                  <v-img :src="company.logo" :max-width="175" :max-height="175" eager style="z-index: 1"
+                    class="p-company__logo rounded-circle" />
                 </div>
               </v-col>
               <v-col cols="12" lg="8" md="8" sm="12">
