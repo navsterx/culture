@@ -78,69 +78,59 @@ async function getCompanies() {
   }
 }
 
-const filteredCompanies = computed(() => {
-  if (searchedRole.value === null || searchedRole.value === '') {
-    // No role input, return companies based on selected perks
-    if (selectedPerks.value.length > 0) {
-      return companies.value.filter((company) => {
-        // Check if the company has perks that match the selected perks
-        return company.perks.some((perk) => selectedPerks.value.includes(perk.category));
-      });
-    } else {
-      // No role and no selected perks, return all companies
-      return companies.value;
-    }
-  } else {
-    // Role input is provided, filter companies based on the role
-    const filtered = companies.value.map((company) => {
-      // Filter jobs within each company
-      const filteredJobs = company.jobs.filter((job) =>
-        job.role && searchedRole.value && job.role.toLowerCase().includes(searchedRole.value.toLowerCase())
-      );
-
-      if (filteredJobs.length > 0) {
-        // Create a copy of the company with filtered jobs
-        const filteredCompany = { ...company };
-        filteredCompany.jobs = filteredJobs;
-        return filteredCompany;
-      } else {
-        return null; // No matching jobs, exclude the company
-      }
-    }).filter(Boolean); // Remove companies with no matching jobs
-
-    // Filter the filtered companies based on selected perks
-    if (selectedPerks.value.length > 0) {
-      return filtered.filter((company) => {
-        return company.perks.some((perk) => selectedPerks.value.includes(perk.category));
-      });
-    }
-
-    return filtered; // Return the companies after role filtering
+const filterCompaniesByRole = (companies, searchedRole) => {
+  if (!searchedRole || searchedRole.trim() === '') {
+    return companies;
   }
+
+  return companies.map((company) => {
+    if (!Array.isArray(company.jobs)) return null;
+
+    const filteredJobs = company.jobs.filter((job) => (
+      job.role &&
+      job.role.toLowerCase().includes(searchedRole.toLowerCase())
+    ));
+
+    return filteredJobs.length > 0
+      ? { ...company, jobs: filteredJobs }
+      : null;
+  }).filter(Boolean);
+};
+
+const filterCompaniesByPerks = (companies, selectedPerks) => {
+  if (selectedPerks.length === 0) {
+    return companies;
+  }
+
+  return companies.filter((company) => (
+    company.perks.some((perk) => selectedPerks.includes(perk.category))
+  ));
+};
+
+const filteredCompanies = computed(() => {
+  if (searchedRole.value === null) {
+    return filterCompaniesByPerks(companies.value, selectedPerks.value);
+  }
+
+  return filterCompaniesByPerks(
+    filterCompaniesByRole(companies.value, searchedRole.value),
+    selectedPerks.value
+  );
 });
 
-
 const filteredPerks = computed(() => {
-  let uniquePerks;
-  if (filteredCompanies.value.length === 0) {
-    uniquePerks = new Map();
-    companies.value.forEach((company) => {
-      if (company.perks) {
-        company.perks.forEach((perk) => {
-          uniquePerks.set(perk.category, perk.emoji);
-        });
-      }
-    });
-  } else {
-    uniquePerks = new Map();
-    filteredCompanies.value.forEach((company) => {
-      if (company.perks) {
-        company.perks.forEach((perk) => {
-          uniquePerks.set(perk.category, perk.emoji);
-        });
-      }
-    });
-  }
+  const uniquePerks = new Map();
+
+  // Define the source of companies to use (all or filtered)
+  const sourceCompanies = filteredCompanies.value.length === 0 ? companies.value : filteredCompanies.value;
+
+  sourceCompanies.forEach((company) => {
+    if (company.perks) {
+      company.perks.forEach((perk) => {
+        uniquePerks.set(perk.category, perk.emoji);
+      });
+    }
+  });
 
   const sortedPerks = Array.from(uniquePerks.entries())
     .map(([category, emoji]) => ({ key: `${emoji} ${category}`, value: category }))
