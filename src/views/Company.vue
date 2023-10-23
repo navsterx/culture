@@ -76,12 +76,11 @@
                   :index="index" :key="index" :interviewProcess="interviewProcess"
                   :isLast="index < company.interviewProcess.length - 1" />
               </v-sheet>
-              <v-sheet elevation="1" rounded class="pa-4">
+              <v-sheet elevation="1" rounded class="pa-4" v-if="displayedJobs.length > 0">
                 <sidebar-item title="Available Opportunities" />
                 <v-list lines="one">
-                  <v-list-item :border="true" :href="job.url" target="_blank"
-                    v-for="(   job, index   ) in    displayedJobs   " :key="index" :base-color="company.brand_color"
-                    :class="{
+                  <v-list-item :border="true" :href="job.url" target="_blank" v-for="(job, index) in displayedJobs"
+                    :key="index" :base-color="company.brand_color" :class="{
                       'mb-4': index < displayedJobs.length - 1,
                       'pa-3': true
                     }
@@ -170,7 +169,7 @@ async function getCompanyByVanityUrl() {
 
 const mapSrc = computed(() => {
   if (company && isLoaded) {
-    return `https://www.google.com/maps/embed/v1/place?key=${googleMapAPIKey}&q=${encodeURIComponent(company.value.name)}&zoom=10`;
+    return `https://www.google.com/maps/embed/v1/place?key=${googleMapAPIKey}&q=${encodeURIComponent(company.value.name + ", " + company.value.address)}&zoom=10`;
   }
 });
 
