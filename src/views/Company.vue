@@ -99,6 +99,10 @@
                     </template>
                   </v-list-item>
                 </v-list>
+                <v-btn v-if="showAllJobsButton && !showAllJobs" @click="onShowAllJobs()" class="mt-2" size="small"
+                  variant="flat outlined" color="secondary">
+                  Show More
+                </v-btn>
               </v-sheet>
             </v-col>
             <v-col lg="8" md="8" sm="12">
@@ -138,12 +142,17 @@ import Perk from '@/components/ListItems/Perk.vue';
 import SidebarItem from '@/components/Cards/SidebarItem.vue';
 import EmailCapture from '@/components/Dialogs/EmailCapture.vue';
 
+const INITAL_JOBS = 5;
+
 let company = ref({});
 let isLoaded = ref(false);
 const vanityUrl = ref(null);
 const route = useRoute();
 const displayedJobs = ref([]);
-const googleMapAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+const allJobs = ref([]);
+const showAllJobs = ref(false);
+const googleMapAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+let showAllJobsButton = ref(false);
 
 onMounted(() => {
   vanityUrl.value = route.params.vanityUrl;
@@ -152,6 +161,7 @@ onMounted(() => {
 });
 
 async function getCompanyByVanityUrl() {
+  isLoaded.value = false;
   try {
     const { data: data } = await supabase
       .rpc('getCompanyByVanityUrl', {
@@ -163,9 +173,20 @@ async function getCompanyByVanityUrl() {
   } finally {
     isLoaded.value = true;
     if (company.value.jobs) {
-      displayedJobs.value = company.value.jobs;
+      allJobs.value = company.value.jobs;
+      if (allJobs.value.length > 3 && showAllJobs.value === false) {
+        displayedJobs.value = allJobs.value.slice(0, INITAL_JOBS);
+        showAllJobsButton = true;
+      } else {
+        displayedJobs.value = allJobs.value;
+      }
     }
   }
+}
+
+const onShowAllJobs = () => {
+  showAllJobs.value = true;
+  displayedJobs.value = allJobs.value;
 }
 
 const mapSrc = computed(() => {
