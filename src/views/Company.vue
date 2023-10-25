@@ -161,7 +161,6 @@ onMounted(() => {
 });
 
 async function getCompanyByVanityUrl() {
-  isLoaded.value = false;
   try {
     const { data: data } = await supabase
       .rpc('getCompanyByVanityUrl', {
