@@ -174,6 +174,7 @@ async function getCompanyByVanityUrl() {
     isLoaded.value = true;
     if (company.value.jobs) {
       allJobs.value = company.value.jobs;
+      allJobs.value = allJobs.value.sort((a, b) => a.role.localeCompare(b.role));
       if (allJobs.value.length > 3 && showAllJobs.value === false) {
         displayedJobs.value = allJobs.value.slice(0, INITAL_JOBS);
         showAllJobsButton = true;
