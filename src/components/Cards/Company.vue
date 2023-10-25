@@ -20,12 +20,12 @@
         {{ company.description }}
       </div>
     </router-link>
-    <v-divider class="my-4" v-if="company.perks" />
+    <v-divider class="mt-4 mb-1" v-if="company.perks" />
     <div class="d-flex flex-wrap" v-if="company.perks">
       <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
         max-width="300">
         <template v-slot:activator="{ props }">
-          <div v-bind="props" class="mr-3 c-company-card__emoji">
+          <div v-bind="props" class="mr-3 mt-3 c-company-card__emoji">
             {{ perk.emoji }}
           </div>
         </template>
