@@ -90,7 +90,7 @@
               <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
                 :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
-                <div class="text-body-2 font-weight-regular mt-4" v-html="item.content"></div>
+                <v-sheet class="text-body-2 font-weight-regular mt-4" v-html="item.content"></v-sheet>
               </v-sheet>
               <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />

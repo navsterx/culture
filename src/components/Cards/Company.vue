@@ -60,7 +60,6 @@ defineProps({
 <style lang="scss">
 .c-company-card {
   &__item {
-    color: #292929;
     text-decoration: none;
   }
 
