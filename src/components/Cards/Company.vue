@@ -35,19 +35,13 @@
   </v-sheet>
 
   <v-sheet class="ml-10 mt-4 pa-4" elevation="1" rounded v-if="showJobs">
-    <div v-for="(job, index) in company.jobs" :key="index">
-      <div class="text-body-1 font-weight-medium">
-        {{ job.role }}
-      </div>
-      <div class="text-body-2 font-weight-regular">
-        {{ job.location }}
-      </div>
-      <v-divider v-if="index < company.jobs.length - 1" class="my-2" />
-    </div>
+    <div class="text-subtitle-1 font-weight-medium">Available Opportunities</div>
+    <jobs :jobs="company.jobs" :company="company" />
   </v-sheet>
 </template>
 
 <script setup>
+import Jobs from '@/components/Cards/Jobs.vue';
 
 defineProps({
   company: {

@@ -79,26 +79,7 @@
               </v-sheet>
               <v-sheet elevation="1" rounded class="pa-4" v-if="displayedJobs.length > 0">
                 <sidebar-item title="Available Opportunities" />
-                <v-list lines="one">
-                  <v-list-item :border="true" :href="job.url" target="_blank" v-for="(job, index) in displayedJobs"
-                    :key="index" :base-color="company.brand_color" :class="{
-                      'mb-4': index < displayedJobs.length - 1,
-                      'pa-3': true
-                    }
-                      " rounded="lg">
-                    <div class="text-body-1 font-weight-medium">
-                      {{ job.role }}
-                    </div>
-                    <div class="text-body-2 font-weight-regular">
-                      {{ job.location }}
-                      {{ job.type ? "/ " + job.type : '' }}
-                      {{ job.salary ? "/ " + job.salary : '' }}
-                    </div>
-                    <template v-slot:append>
-                      <v-icon icon="mdi-open-in-new" :color="company.brand_color" size="small"></v-icon>
-                    </template>
-                  </v-list-item>
-                </v-list>
+                <jobs :jobs="displayedJobs" :company="company" />
                 <v-btn v-if="showAllJobsButton && !showAllJobs" @click="onShowAllJobs()" class="mt-2" size="small"
                   variant="text" color="secondary">
                   Show More
@@ -141,6 +122,7 @@ import InterviewProcess from '@/components/ListItems/InterviewProcess.vue';
 import Perk from '@/components/ListItems/Perk.vue';
 import SidebarItem from '@/components/Cards/SidebarItem.vue';
 import EmailCapture from '@/components/Dialogs/EmailCapture.vue';
+import Jobs from '@/components/Cards/Jobs.vue';
 
 const INITAL_JOBS = 5;
 

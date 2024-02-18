@@ -1,5 +1,6 @@
 {
   "name": "awesomeculture",
+  "type": "module",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,7 +16,7 @@
     "core-js": "^3.29.0",
     "lodash": "^4.17.21",
     "roboto-fontface": "*",
-    "vue": "^3.2.0",
+    "vue": "^3.4.19",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0"
   },
