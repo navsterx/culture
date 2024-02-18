@@ -3,7 +3,7 @@
     <v-sheet>
       <v-container>
         <div class="text-body-2 text-center">
-          © 2023 Awesome Culture. All rights reserved. Made with ❤️ in the West Midlands, UK.
+          © {{ currentYear }} Awesome Culture. All rights reserved. Made with ❤️ in the West Midlands, UK.
         </div>
       </v-container>
     </v-sheet>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-//
+const currentYear = new Date().getFullYear();
 </script>
 
 <style lang="scss">
