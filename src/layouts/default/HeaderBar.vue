@@ -8,11 +8,13 @@
           </router-link>
           <v-menu location="bottom right">
             <template v-slot:activator="{ props }">
-              <v-btn v-bind="props" icon color="black" variant="text">
-                <v-icon>mdi-menu</v-icon>
-              </v-btn>
-              <!-- <v-switch inset color="info" v-model="darkMode" @change="toggleTheme()"
-                :label="`It's ${darkMode ? 'Dark' : 'Light'}!`"></v-switch> -->
+              <div class="d-flex align-center">
+                <v-btn v-bind="props" icon color="black" variant="text">
+                  <v-icon>mdi-menu</v-icon>
+                </v-btn>
+                <!-- <v-switch v-model="darkMode" @change="toggleTheme()" :label="`${darkMode ? 'Dark' : 'Light'}`"
+                  hide-details="auto"></v-switch> -->
+              </div>
             </template>
             <v-list>
               <v-list-item to="/listed">
