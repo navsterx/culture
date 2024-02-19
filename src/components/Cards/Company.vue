@@ -21,7 +21,7 @@
       </div>
     </router-link>
     <v-divider class="mt-4 mb-1" v-if="company.perks" />
-    <div class="d-flex flex-wrap" v-if="company.perks">
+    <div class="d-flex align-center flex-wrap" v-if="company.perks">
       <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
         max-width="300">
         <template v-slot:activator="{ props }">
@@ -65,8 +65,9 @@ defineProps({
 
   &__emoji {
     cursor: pointer;
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 22px;
+    line-height: 22px;
+    gap: 1px;
   }
 }
 </style>
