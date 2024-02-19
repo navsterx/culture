@@ -24,7 +24,6 @@
       <v-card-title>
         {{ selectedJob.role }}
       </v-card-title>
-      <v-divider class="mb-2" />
       <v-card-text class="pa-4 pt-2">
         <div class="text-body-2 font-weight-regular mb-4">
           We'll open your selected role in a new tab. Remember, you can return here at anytime to learn more about the
@@ -35,10 +34,9 @@
           Best of luck in your job search, you got this!
         </div>
       </v-card-text>
-      <v-divider class="mb-2" />
-      <v-card-actions>
-        <v-btn size="small" variant="tonal" class="mr-2" color="primary" @click="navigate">View Role</v-btn>
-        <v-btn size="small" variant="tonal" color="error" @click="cancel">Cancel</v-btn>
+      <v-card-actions class="px-4">
+        <v-btn size="small" variant="flat" class="mr-2" color="primary" @click="navigate">View Role</v-btn>
+        <v-btn size="small" variant="flat" @click="cancel">Cancel</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
