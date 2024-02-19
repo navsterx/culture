@@ -1,6 +1,6 @@
 <template>
   <v-autocomplete v-model="selectedRole" :items="uniqueRoles" density="compact" variant="solo"
-    label="Search for or select a role" dense clearable hide-details />
+    label="Search and select a role" dense clearable hide-details />
 </template>
 
 <script setup>
