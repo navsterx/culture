@@ -36,7 +36,7 @@
 
   <v-sheet class="ml-10 mt-4 pa-4" elevation="1" rounded v-if="showJobs">
     <div class="text-subtitle-1 font-weight-medium">Available Opportunities</div>
-    <jobs :jobs="company.jobs" :company="company" />
+    <jobs :jobs="company.jobs" :company="company" :navigate-to-company="true" />
   </v-sheet>
 </template>
 
