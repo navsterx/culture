@@ -10,7 +10,7 @@
         </div>
         <div class="d-flex p-home__filters">
           <div class="p-home__job mr-4">
-            <input-filter v-model="searchedRole" :delay="3000" />
+            <input-filter v-model="searchedRole" :companies="companies" />
           </div>
           <div class="p-home__perks">
             <v-autocomplete color="primary" density="compact" variant="solo" chips closable-chips clearable
