@@ -24,7 +24,7 @@
       <v-card-title>
         {{ selectedJob.role }}
       </v-card-title>
-      <v-divider />
+      <v-divider class="mb-2" />
       <v-card-text class="pa-4 pt-2">
         <div class="text-body-2 font-weight-regular mb-4">
           We'll open your selected role in a new tab. Remember, you can return here at anytime to learn more about the
