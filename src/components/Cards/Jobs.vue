@@ -69,13 +69,11 @@ const displayDialog = (job) => {
 }
 
 const navigate = () => {
-  dialog.value = false;
   if (props.navigateToCompany) {
     window.location = `/company/${props.company.vanity_url}`;
-  } else {
-    window.scroll(0, 0);
   }
   window.open(selectedJob.value.url);
+  dialog.value = false;
 }
 
 const cancel = () => {
