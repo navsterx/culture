@@ -11,7 +11,7 @@
             role{{ company.jobs.length === 1 ? '' : 's' }} available
           </div>
           <div class="text-body-2 text-textPrimary" v-else>
-            No roles available right now
+            No available roles
           </div>
         </div>
       </div>
