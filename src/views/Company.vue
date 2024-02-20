@@ -52,25 +52,7 @@
       <v-responsive>
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
-            <v-col lg="8" md="8" sm="12">
-              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
-                :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
-                <sidebar-item :title="`${item.title} at ${company.name}?`" />
-                <v-sheet class="text-body-2 font-weight-regular mt-4" v-html="item.content"></v-sheet>
-              </v-sheet>
-              <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
-                <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
-                <div class="p-company__stack d-flex align-center  flex-wrap">
-                  <div v-for="(tech, index) in company.techstack" :key="index">
-                    <v-tooltip :text="tech.name" location="bottom">
-                      <template v-slot:activator="{ props }">
-                        <i v-bind="props" class="colored" :class="tech.class"></i>
-                      </template>
-                    </v-tooltip>
-                  </div>
-                </div>
-              </v-sheet>
-            </v-col>
+
             <v-col cols="12" lg="4" md="4" sm="12">
               <v-fade-transition>
                 <div v-if="isLoaded">
@@ -96,6 +78,25 @@
                   variant="text" color="secondary">
                   Show More
                 </v-btn>
+              </v-sheet>
+            </v-col>
+            <v-col lg="8" md="8" sm="12">
+              <v-sheet class="pa-4 mb-6 p-company__content" elevation="1" rounded v-for="(item, index) in company.content"
+                :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
+                <sidebar-item :title="`${item.title} at ${company.name}?`" />
+                <v-sheet class="text-body-2 font-weight-regular mt-4" v-html="item.content"></v-sheet>
+              </v-sheet>
+              <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="1" rounded>
+                <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
+                <div class="p-company__stack d-flex align-center  flex-wrap">
+                  <div v-for="(tech, index) in company.techstack" :key="index">
+                    <v-tooltip :text="tech.name" location="bottom">
+                      <template v-slot:activator="{ props }">
+                        <i v-bind="props" class="colored" :class="tech.class"></i>
+                      </template>
+                    </v-tooltip>
+                  </div>
+                </div>
               </v-sheet>
             </v-col>
           </v-row>
