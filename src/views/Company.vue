@@ -226,7 +226,7 @@ const mapSrc = computed(() => {
   &__content {
     img {
       width: 100%;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     ul {
