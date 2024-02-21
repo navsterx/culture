@@ -52,14 +52,9 @@
       <v-responsive>
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
-
             <v-col cols="12" lg="4" md="4" sm="12">
-              <v-fade-transition>
-                <div v-if="isLoaded">
-                  <iframe class="mb-4" :src="mapSrc" width="100%" height="275" style="border:0" allowfullscreen
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-              </v-fade-transition>
+              <iframe class="mb-4" :src="mapSrc" width="100%" height="275" style="border:0" allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
               <v-sheet class="pa-4 mb-6" elevation="1" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
@@ -146,16 +141,20 @@ async function getCompanyByVanityUrl() {
   } catch (error) {
     console.log('error ', error);
   } finally {
+    renderJobsList();
     isLoaded.value = true;
-    if (company.value.jobs) {
-      allJobs.value = company.value.jobs;
-      allJobs.value = allJobs.value.sort((a, b) => a.role.localeCompare(b.role));
-      if (allJobs.value.length > 3 && showAllJobs.value === false) {
-        displayedJobs.value = allJobs.value.slice(0, INITAL_JOBS);
-        showAllJobsButton = true;
-      } else {
-        displayedJobs.value = allJobs.value;
-      }
+  }
+}
+
+const renderJobsList = () => {
+  if (company.value.jobs) {
+    allJobs.value = company.value.jobs;
+    allJobs.value = allJobs.value.sort((a, b) => a.role.localeCompare(b.role));
+    if (allJobs.value.length > 3 && showAllJobs.value === false) {
+      displayedJobs.value = allJobs.value.slice(0, INITAL_JOBS);
+      showAllJobsButton = true;
+    } else {
+      displayedJobs.value = allJobs.value;
     }
   }
 }
