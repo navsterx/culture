@@ -2,8 +2,8 @@
   <v-list lines="one" class="c-jobs">
     <v-list-item :border="true" @click="displayDialog(job)" target="_blank" v-for="(job, index) in jobs" :key="index"
       :base-color="company.brand_color" :class="{
-        'mb-4': index < jobs.length - 1,
-        'pa-3': true
+        'mb-2': index < jobs.length - 1,
+        'pa-2': true
       }
         " rounded="lg">
       <div class="text-body-1 font-weight-medium">

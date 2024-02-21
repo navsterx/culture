@@ -53,23 +53,23 @@
         <v-fade-transition>
           <v-row class="pa-1" v-if="isLoaded">
             <v-col cols="12" lg="4" md="4" sm="12">
-              <v-sheet class="pa-4 mb-6" elevation="2" v-if="company.perks" rounded>
+              <v-sheet class="pa-3 mb-6" elevation="2" v-if="company.perks" rounded>
                 <sidebar-item title="Location" />
                 <iframe :src="mapSrc" width="100%" height="275" style="border:0" allowfullscreen
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
               </v-sheet>
-              <v-sheet class="pa-4 mb-6" elevation="2" v-if="company.perks" rounded>
+              <v-sheet class="pa-3 mb-6" elevation="2" v-if="company.perks" rounded>
                 <sidebar-item title="Benefits & Perks" />
                 <perk v-for="(perk, index) in company.perks" :key="index" :perk="perk"
                   :isLast="index < company.perks.length - 1" />
               </v-sheet>
-              <v-sheet class="pa-4 mb-6" elevation="2" v-if="company.interviewProcess" rounded>
+              <v-sheet class="pa-3 mb-6" elevation="2" v-if="company.interviewProcess" rounded>
                 <sidebar-item title="Interview Process" />
                 <interview-process v-for="(interviewProcess, index) in company.interviewProcess" :index="index"
                   :key="index" :interviewProcess="interviewProcess"
                   :isLast="index < company.interviewProcess.length - 1" />
               </v-sheet>
-              <v-sheet elevation="2" rounded class="pa-4" v-if="displayedJobs.length > 0">
+              <v-sheet elevation="2" rounded class="pa-3" v-if="displayedJobs.length > 0">
                 <sidebar-item title="Available Opportunities" />
                 <jobs :jobs="displayedJobs" :company="company" />
                 <v-btn v-if="showAllJobsButton && !showAllJobs" @click="onShowAllJobs()" class="mt-2" size="small"
@@ -79,12 +79,12 @@
               </v-sheet>
             </v-col>
             <v-col lg="8" md="8" sm="12">
-              <v-sheet class="pa-4 mb-6 p-company__content" elevation="2" rounded v-for="(item, index) in company.content"
+              <v-sheet class="pa-3 mb-6 p-company__content" elevation="2" rounded v-for="(item, index) in company.content"
                 :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
-                <v-sheet class="text-body-2 font-weight-regular mt-4" v-html="item.content"></v-sheet>
+                <v-sheet class="text-body-2 font-weight-regular mt-3" v-html="item.content"></v-sheet>
               </v-sheet>
-              <v-sheet v-if="company.techstack" class="pa-4 p-company__content" elevation="2" rounded>
+              <v-sheet v-if="company.techstack" class="pa-3 p-company__content" elevation="2" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
                 <div class="p-company__stack d-flex align-center  flex-wrap">
                   <div v-for="(tech, index) in company.techstack" :key="index">
