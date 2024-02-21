@@ -26,8 +26,8 @@ defineProps({
 <style lang="scss">
 .c-perk {
   &__emoji {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 22px;
+    line-height: 22px;
   }
 }
 </style>
