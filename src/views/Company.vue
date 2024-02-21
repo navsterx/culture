@@ -86,7 +86,7 @@
               </v-sheet>
               <v-sheet v-if="company.techstack" class="pa-3 p-company__content" elevation="2" rounded>
                 <sidebar-item :title="`What's the tech stack at ${company.name}?`" />
-                <div class="p-company__stack d-flex align-center  flex-wrap">
+                <div class="p-company__stack d-flex align-center  flex-wrap mt-3">
                   <div v-for="(tech, index) in company.techstack" :key="index">
                     <v-tooltip :text="tech.name" location="bottom">
                       <template v-slot:activator="{ props }">
