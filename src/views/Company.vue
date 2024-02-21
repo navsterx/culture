@@ -4,7 +4,7 @@
       <div v-if="isLoaded" class="p-company__hero d-flex align-center"
         :style="{ 'background-image': 'url(' + company.header_image + ')' }">
         <v-container class="d-flex justify-center">
-          <div style="width: 80%">
+          <div class="p-company__hero-container">
             <div class="p-company__hero-text">
               <div class="text-h4 font-weight-bold mb-2">
                 {{ company.name }}
@@ -197,6 +197,14 @@ const mapSrc = computed(() => {
 
   &__social-icons {
     text-decoration: none;
+  }
+
+  &__hero-container {
+    width: 80%;
+
+    @media (max-width: 959px) {
+      width: 100%;
+    }
   }
 
   &__hero {
