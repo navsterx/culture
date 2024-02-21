@@ -1,12 +1,12 @@
 <template>
-  <v-list lines="one" class="c-jobs">
-    <v-list-item :border="true" @click="displayDialog(job)" target="_blank" v-for="(job, index) in jobs" :key="index"
+  <v-list lines="one" class="c-jobs pa-0">
+    <v-list-item :border="true" @click="displayDialog(job)" v-for="(job, index) in jobs" :key="index"
       :base-color="company.brand_color" :class="{
         'mb-2': index < jobs.length - 1,
         'pa-2': true
       }
         " rounded="lg">
-      <div class="text-body-1 font-weight-medium">
+      <div class="text-body-2 font-weight-medium">
         {{ job.role }}
       </div>
       <div class="text-body-2 font-weight-regular">
@@ -15,7 +15,7 @@
         {{ job.salary ? "/ " + job.salary : '' }}
       </div>
       <template v-slot:append>
-        <v-icon icon="mdi-open-in-new" :color="company.brand_color" size="small"></v-icon>
+        <v-icon icon="mdi-open-in-new" color="primary" size="small"></v-icon>
       </template>
     </v-list-item>
   </v-list>
