@@ -6,14 +6,13 @@
           <router-link to="/">
             <v-img src="/logo.png" width="130" alt="Logo" />
           </router-link>
-          <v-menu location="bottom right">
+          &nbsp;
+          <!-- <v-menu location="bottom right">
             <template v-slot:activator="{ props }">
               <div class="d-flex align-center">
                 <v-btn v-bind="props" icon color="black" variant="text">
                   <v-icon>mdi-menu</v-icon>
                 </v-btn>
-                <!-- <v-switch v-model="darkMode" @change="toggleTheme()" :label="`${darkMode ? 'Dark' : 'Light'}`"
-                  hide-details="auto"></v-switch> -->
               </div>
             </template>
             <v-list>
@@ -28,7 +27,7 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list>
-          </v-menu>
+          </v-menu> -->
         </div>
       </v-container>
     </v-sheet>
