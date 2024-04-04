@@ -12,12 +12,14 @@
     </v-row>
     <cookie-policy />
     <email-capture :timeToDisplay="500" :showNoThanks="false" />
+    <footer-bar />
   </v-app>
 </template>
 
 <script setup>
 import EmailCapture from '@/components/Dialogs/EmailCapture.vue';
 import CookiePolicy from '@/components/Dialogs/CookiePolicy.vue';
+import FooterBar from './FooterBar.vue'
 
 </script>
 
