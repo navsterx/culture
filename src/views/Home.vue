@@ -14,8 +14,8 @@
           </div>
           <div class="p-home__perks">
             <v-autocomplete color="primary" density="compact" variant="solo" chips closable-chips clearable
-              label="Benefits & Perks" v-model="selectedPerks" :items="filteredPerks" item-title="key" item-value="value"
-              multiple hide-details></v-autocomplete>
+              label="Benefits & Perks" v-model="selectedPerks" :items="filteredPerks" item-title="key"
+              item-value="value" multiple hide-details></v-autocomplete>
           </div>
         </div>
       </v-container>
@@ -53,6 +53,7 @@
 import { onMounted, ref, computed } from 'vue';
 import { supabase } from '/src/supabase';
 import MasonryWall from '@yeger/vue-masonry-wall'
+import { useHead, useSeoMeta } from '@unhead/vue';
 
 import InputFilter from '@/components/Inputs/Filter.vue';
 import CompanyCard from '@/components/Cards/Company.vue';
@@ -61,6 +62,19 @@ const searchedRole = ref(null);
 const selectedPerks = ref([]);
 let companies = ref([]);
 let isLoaded = ref(false);
+
+useHead({
+  title: 'Awesome Culture - Discover UK tech companies that align with you'
+})
+
+useSeoMeta({
+  title: `Awesome Culture - Discover UK tech companies that align with you`,
+  description: 'Easily filter companies based on the perks they offer, delve into detailed information about their culture, day-to-day operations, and training opportunities. The goal is to provide the insights you need to make informed decisions when searching for your next job.',
+  ogDescription: 'Easily filter companies based on the perks they offer, delve into detailed information about their culture, day- to - day operations, and training opportunities.The goal is to provide the insights you need to make informed decisions when searching for your next job.',
+  ogTitle: 'Awesome Culture - Discover UK tech companies that align with you',
+  ogImage: '/logo.png',
+  twitterCard: 'summary_large_image',
+})
 
 onMounted(() => {
   getCompanies()

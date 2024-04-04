@@ -19,7 +19,7 @@
                       <v-icon :min-width="18" :min-height="18">mdi-home</v-icon>
                     </div>
                     <a :href="company.website" class="text-decoration-none p-company__hero-text" target="_blank">{{
-                      company.name }}</a>
+        company.name }}</a>
                   </div>
                 </div>
                 <div v-if="company.social_linkedin">
@@ -30,7 +30,7 @@
                     </div>
                     <a :href="`https://www.linkedin.com/company/${company.social_linkedin}`"
                       class="text-decoration-none p-company__hero-text" target="_blank">{{
-                        company.social_linkedin }}</a>
+        company.social_linkedin }}</a>
                   </div>
                 </div>
                 <div v-if="company.social_x" class="d-flex align-center">
@@ -39,7 +39,7 @@
                   </div>
                   <div><a :href="`https://www.x.com/${company.social_x}`" target="_blank"
                       class="text-decoration-none p-company__hero-text">{{
-                        company.social_x }}</a>
+        company.social_x }}</a>
                   </div>
                 </div>
               </div>
@@ -79,8 +79,9 @@
               </v-sheet>
             </v-col>
             <v-col lg="8" md="8" sm="12">
-              <v-sheet class="pa-3 mb-6 p-company__content" elevation="2" rounded v-for="(item, index) in company.content"
-                :key="index" :class="{ 'mb-6': index !== company.content.length - 1 }">
+              <v-sheet class="pa-3 mb-6 p-company__content" elevation="2" rounded
+                v-for="(item, index) in company.content" :key="index"
+                :class="{ 'mb-6': index !== company.content.length - 1 }">
                 <sidebar-item :title="`${item.title} at ${company.name}?`" />
                 <v-sheet class="text-body-2 font-weight-regular mt-3" v-html="item.content"></v-sheet>
               </v-sheet>
@@ -110,6 +111,7 @@
 import { onMounted, ref, computed } from 'vue';
 import { supabase } from '../supabase'
 import { useRoute } from 'vue-router';
+import { useHead, useSeoMeta } from '@unhead/vue';
 import InterviewProcess from '@/components/ListItems/InterviewProcess.vue';
 import Perk from '@/components/ListItems/Perk.vue';
 import SidebarItem from '@/components/Cards/SidebarItem.vue';
@@ -145,6 +147,26 @@ async function getCompanyByVanityUrl() {
     console.log('error ', error);
   } finally {
     renderJobsList();
+
+    useHead({
+      title: `${company.value.name} - Awesome Culture`,
+      meta: [
+        {
+          name: 'description',
+          content: `${company.value.description}`
+        },
+      ],
+    })
+
+    useSeoMeta({
+      title: `${company.value.name} - Awesome Culture`,
+      description: `${company.value.description}`,
+      ogDescription: `${company.value.description}`,
+      ogTitle: `${company.value.name} - Awesome Culture`,
+      ogImage: `${company.value.header_image}`,
+      twitterCard: 'summary_large_image',
+    })
+
     isLoaded.value = true;
   }
 }
