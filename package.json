@@ -13,6 +13,7 @@
     "@mdi/font": "7.0.96",
     "@supabase/supabase-js": "^2.38.0",
     "@unhead/vue": "^1.9.4",
+    "@vercel/analytics": "^1.2.2",
     "@yeger/vue-masonry-wall": "^5.0.2",
     "core-js": "^3.29.0",
     "lodash": "^4.17.21",
