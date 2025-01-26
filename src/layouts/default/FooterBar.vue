@@ -6,7 +6,7 @@
           © {{ currentYear }} Awesome Culture. All rights reserved.
         </div>
         <div class="text-body-2 text-center c-footer-bar__text">
-          Developed by <a class="text-primary" href="https://www.develop4.io/" target="_blank">Develop4</a> in the
+          Made with ❤️ by <a class="text-primary" href="https://www.develop4.io/" target="_blank">Develop4</a> in the
           West
           Midlands, UK.
         </div>
