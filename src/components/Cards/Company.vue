@@ -25,7 +25,11 @@
       <v-tooltip v-for="(perk, index) in company.perks" :key="index" :text="perk.description" location="top"
         max-width="300">
         <template v-slot:activator="{ props }">
-          <div v-bind="props" class="mr-3 mt-3 c-company-card__emoji">
+          <div
+            v-bind="props"
+            class="mr-3 mt-3 c-company-card__emoji"
+            :class="getPerkClass(perk.category)"
+          >
             {{ perk.emoji }}
           </div>
         </template>
@@ -43,7 +47,7 @@
 <script setup>
 import Jobs from '@/components/Cards/Jobs.vue';
 
-defineProps({
+const props = defineProps({
   company: {
     type: Object,
     required: true
@@ -59,6 +63,13 @@ defineProps({
   }
 });
 
+// Computed function to determine the class for each perk
+const getPerkClass = (category) => {
+  if (!props.selectedPerks || props.selectedPerks.length === 0) {
+    return 'selected'; // Full opacity if no perks are selected
+  }
+  return props.selectedPerks.includes(category) ? 'selected' : 'dimmed'; // Dimmed for unselected perks
+};
 </script>
 
 <style lang="scss">
@@ -72,6 +83,16 @@ defineProps({
     font-size: 22px;
     line-height: 22px;
     gap: 1px;
+    opacity: 1; /* Default full opacity */
+    transition: opacity 0.3s ease;
+
+    &.dimmed {
+      opacity: 0.255; /* Dimmed opacity for unselected perks */
+    }
+
+    &.selected {
+      opacity: 1; /* Full opacity for selected perks */
+    }
   }
 }
 </style>
