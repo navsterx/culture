@@ -7,7 +7,6 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
-import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader';
 
 // Composables
 import { createVuetify } from 'vuetify'
@@ -46,9 +45,6 @@ export default createVuetify({
     sets: {
       mdi,
     },
-  },
-  components: {
-    VSkeletonLoader,
   },
   theme: {
     defaultTheme: "light",

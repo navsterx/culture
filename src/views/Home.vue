@@ -35,7 +35,7 @@
         <template v-else>
           <masonry-wall :items="filteredCompanies" :ssr-columns="3" :column-width="300" :gap="16">
             <template #default="{ item, index }">
-              <company-card :key="index" :company="item" :show-jobs="false" />
+              <company-card :key="index" :company="item" :selected-perks="selectedPerks" :show-jobs="false" />
             </template>
           </masonry-wall>
         </template>

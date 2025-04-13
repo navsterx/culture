@@ -52,6 +52,10 @@ defineProps({
     type: Boolean,
     required: false,
     default: false
+  },
+  selectedPerks: {
+    type: Array,
+    required: false,
   }
 });
 
