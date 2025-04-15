@@ -17,6 +17,8 @@
     "@yeger/vue-masonry-wall": "^5.0.2",
     "core-js": "^3.29.0",
     "lodash": "^4.17.21",
+    "pinia": "^3.0.2",
+    "pinia-plugin-persistedstate": "^4.2.0",
     "roboto-fontface": "*",
     "vue": "^3.4.19",
     "vue-router": "^4.0.0",
@@ -28,6 +30,7 @@
     "eslint-plugin-vue": "^9.3.0",
     "sass": "^1.69.2",
     "sass-loader": "^13.3.2",
+    "supabase": "^2.20.12",
     "unplugin-fonts": "^1.0.3",
     "vite": "^6.2.6",
     "vite-plugin-vuetify": "^2.1.1"

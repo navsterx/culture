@@ -9,21 +9,42 @@
                 Subscribe for Inspiring Companies!
               </div>
               <div class="text-body-2 text-white">
-                Get ready to discover inspiring companies with amazing cultures! We'll send you occasional emails
-                featuring these gems. Rest assured, your email is safe with us, and you can unsubscribe anytime you like.
+                Get ready to discover inspiring companies with amazing cultures!
+                We'll send you occasional emails featuring these gems. Rest
+                assured, your email is safe with us, and you can unsubscribe
+                anytime you like.
               </div>
-              <div class="text-body-2">
-              </div>
+              <div class="text-body-2"></div>
             </v-col>
             <v-col cols="12" md="6">
               <v-form @submit.prevent="subscribe">
-                <v-text-field class="mb-4" variant="solo" density="compact" v-model="email" :rules="rules"
-                  hide-details="auto" label="Email Address" @focus="onFocus"
-                  :class="{ 'v-focus': focused }"></v-text-field>
+                <v-text-field
+                  class="mb-4"
+                  variant="solo"
+                  density="compact"
+                  v-model="email"
+                  :rules="rules"
+                  hide-details="auto"
+                  label="Email Address"
+                  @focus="onFocus"
+                  :class="{ 'v-focus': focused }"
+                ></v-text-field>
                 <div>
-                  <v-btn class="mr-2 text-body-2" color="white" variant="flat" @click="subscribe">Subscribe</v-btn>
-                  <v-btn class="text-body-2" v-if="showNoThanks" color="white" variant="text" @click="cancel">No
-                    thanks</v-btn>
+                  <v-btn
+                    class="mr-2 text-body-2"
+                    color="white"
+                    variant="flat"
+                    @click="subscribe"
+                    >Subscribe</v-btn
+                  >
+                  <v-btn
+                    class="text-body-2"
+                    v-if="showNoThanks"
+                    color="white"
+                    variant="text"
+                    @click="cancel"
+                    >No thanks</v-btn
+                  >
                 </div>
               </v-form>
             </v-col>
@@ -31,21 +52,29 @@
         </v-container>
       </div>
     </v-fade-transition>
-    <v-snackbar v-model="snackbar" :timeout="3000" color="success" location="top right">
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="3000"
+      color="success"
+      location="top right"
+    >
       Great! You have subscribed successfully!
     </v-snackbar>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, computed, watch } from 'vue';
-import { supabase } from '/src/supabase.js'
+import { onMounted, ref, computed, watch } from "vue";
+import { supabase } from "/src/supabase.js";
+import { useGlobalStore } from "@/stores/global";
+
+const globalStore = useGlobalStore();
 
 const dialogOpen = ref(false);
-const email = ref('');
+const email = ref("");
 const rules = [
-  (v) => !!v || 'Email is required',
-  (v) => /.+@.+\..+/.test(v) || 'Email must be valid',
+  (v) => !!v || "Email is required",
+  (v) => /.+@.+\..+/.test(v) || "Email must be valid",
 ];
 const snackbar = ref(false);
 const focused = ref(false);
@@ -53,30 +82,31 @@ const focused = ref(false);
 const props = defineProps({
   timeToDisplay: {
     type: Number,
-    required: true
+    required: true,
   },
   showNoThanks: {
     type: Boolean,
     required: false,
     default: true,
-  }
+  },
 });
 
 const onFocus = () => {
   focused.value = true;
   window.scrollTo({
     top: window.scrollY + 313,
-    behavior: 'smooth',
+    behavior: "smooth",
   });
-}
+};
 
 const validEmail = computed(() => {
   return email.value && rules.every((rule) => rule(email.value) === true);
 });
 
 const showDialog = computed(() => {
-  const emailOptIn = localStorage.getItem('emailOptIn');
-  return !(emailOptIn);
+  return (
+    globalStore.emailOptIn === null || globalStore.emailOptIn === undefined
+  );
 });
 
 const subscribe = async () => {
@@ -86,10 +116,10 @@ const subscribe = async () => {
       .insert({ email: email.value });
 
     if (insertError) {
-      localStorage.setItem('emailOptIn', true);
+      globalStore.setEmailOptIn(true);
       dialogOpen.value = false;
     } else {
-      localStorage.setItem('emailOptIn', true);
+      globalStore.setEmailOptIn(true);
       snackbar.value = true;
       dialogOpen.value = false;
     }
@@ -97,7 +127,7 @@ const subscribe = async () => {
 };
 
 const cancel = () => {
-  localStorage.setItem('emailOptIn', false);
+  globalStore.setEmailOptIn(false);
   dialogOpen.value = false;
 };
 
@@ -107,12 +137,12 @@ onMounted(() => {
   }, props.timeToDisplay);
 });
 
-const emailOptIn = computed(() => localStorage.getItem('emailOptIn') ?? false);
-
-watch([emailOptIn], () => {
-  dialogOpen.value = showDialog.value(emailOptIn.value);
-});
-
+watch(
+  () => globalStore.emailOptIn,
+  () => {
+    dialogOpen.value = showDialog.value;
+  }
+);
 </script>
 
 <style lang="scss">
@@ -124,6 +154,5 @@ watch([emailOptIn], () => {
     width: 100% !important;
     transition: transform 0.3s ease; // Add transition property for smooth movement
   }
-
 }
 </style>

@@ -9,18 +9,16 @@
 </template>
 
 <script setup>
-
 defineProps({
   perk: {
     type: Object,
-    required: true
+    required: true,
   },
   isLast: {
     type: Boolean,
     required: true,
-  }
+  },
 });
-
 </script>
 
 <style lang="scss">

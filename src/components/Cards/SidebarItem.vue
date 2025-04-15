@@ -8,16 +8,15 @@
 </template>
 
 <script setup>
-
 defineProps({
   title: {
     type: String,
-    required: true
+    required: true,
   },
-})
-
+});
 </script>
 
 <style lang="scss">
-.c-sidebar-item {}
+.c-sidebar-item {
+}
 </style>
