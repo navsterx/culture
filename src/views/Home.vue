@@ -28,7 +28,7 @@
         <template v-if="searchedRole">
           <v-row>
             <v-col cols="12" md="12" v-for="(company, index) in filteredCompanies" :key="index">
-              <company-card :company="company" :show-jobs="true" />
+              <company-card :company="company" :selected-perks="selectedPerks" :show-jobs="true" />
             </v-col>
           </v-row>
         </template>
