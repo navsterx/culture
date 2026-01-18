@@ -28,6 +28,7 @@
               </v-list-item>
             </v-list>
           </v-menu> -->
+          <!-- <a @click="toggleTheme()">Test</a> -->
         </div>
       </v-container>
     </v-sheet>
@@ -42,12 +43,15 @@ const theme = useTheme();
 const darkMode = ref(false);
 
 const toggleTheme = () => {
-  theme.global.name.value = darkMode.value ? "dark" : "light";
+  theme.global.name.value = darkMode.value ? "light" : "dark";
+  darkMode.value = !darkMode.value;
+
   // Optional: Get value of current theme
   console.log(`Current theme is dark? ${theme.global.current.value.dark}`);
 };
 </script>
 
 <style lang="scss">
-.c-header-bar {}
+.c-header-bar {
+}
 </style>
