@@ -153,6 +153,7 @@ watch(
     bottom: 0 !important;
     width: 100% !important;
     transition: transform 0.3s ease; // Add transition property for smooth movement
+    z-index: 1000 !important;
   }
 }
 </style>
