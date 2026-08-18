@@ -9,8 +9,8 @@ import App from "./App.vue";
 
 // Composables
 import { createApp } from "vue";
-import MasonryWall from "@yeger/vue-masonry-wall";
-import { createHead } from "@unhead/vue";
+import { MasonryWall } from "@yeger/vue-masonry-wall";
+import { createHead } from "@unhead/vue/client";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
